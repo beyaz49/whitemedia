@@ -18,6 +18,7 @@ let introWasShown = false;
 
 const SHOWCASE_VIDEOS = [
   "/hero/faber-preview.mp4", // Faber'in tam filmi proje sayfasında
+  "/hero/kd-katik-preview.mp4", // ürün / mutfak; şube filmleri proje sayfasında
   "/videos/clip-1.mp4", // sağlık
   "/hero/ozen-preview.mp4", // optik / ürün; tam filmler proje sayfasında
   "/videos/clip-14.mp4", // kafe

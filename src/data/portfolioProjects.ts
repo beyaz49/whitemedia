@@ -105,6 +105,57 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
+    index: "21",
+    slug: "kd-katik-doner",
+    name: "KD Katık Döner",
+    category: "Yeme İçme · Çok Şubeli Prodüksiyon",
+    summary:
+      "KD Katık Döner'in 6 şubesi için ürün hazırlığı, mekân ve servis deneyimini anlatan dikey video içerikleri ürettik.",
+    services: ["6 şube için video çekimi", "Ürün & mutfak prodüksiyonu", "Reels, kurgu & renk"],
+    logo: "/logos/kd-katik-doner.svg",
+    logoAlt: "KD Katık Döner logosu",
+    logoShape: "square",
+    logoTreatment: "dark",
+    panel: "dark",
+    media: [
+      {
+        src: "/work/kd-katik-doner/pelitli-sube-tanitimi.mp4",
+        poster: "/work/kd-katik-doner/pelitli-sube-tanitimi.webp",
+        title: "Pelitli şubesi — Mekân ve lezzet filmi",
+      },
+      {
+        src: "/work/kd-katik-doner/meydan-sube-tanitimi.mp4",
+        poster: "/work/kd-katik-doner/meydan-sube-tanitimi.webp",
+        title: "Meydan şubesi — Ürün hazırlığı",
+      },
+      {
+        src: "/work/kd-katik-doner/rize-sube-tanitimi.mp4",
+        poster: "/work/kd-katik-doner/rize-sube-tanitimi.webp",
+        title: "Rize şubesi — Mutfaktan sunuma",
+      },
+      {
+        src: "/work/kd-katik-doner/sogutlu-sube-tanitimi.mp4",
+        poster: "/work/kd-katik-doner/sogutlu-sube-tanitimi.webp",
+        title: "Söğütlü şubesi — Ürün sunumu",
+      },
+      {
+        src: "/work/kd-katik-doner/of-sube-tanitimi.mp4",
+        poster: "/work/kd-katik-doner/of-sube-tanitimi.webp",
+        title: "Of şubesi — Reels filmi",
+      },
+      {
+        src: "/work/kd-katik-doner/arakli-sube-tanitimi.mp4",
+        poster: "/work/kd-katik-doner/arakli-sube-tanitimi.webp",
+        title: "Araklı şubesi — Reels filmi",
+      },
+      {
+        src: "/work/kd-katik-doner/urun-tanitim-filmi.mp4",
+        poster: "/work/kd-katik-doner/urun-tanitim-filmi.webp",
+        title: "KD Katık Döner — Mutfak ve ekip filmi",
+      },
+    ],
+  },
+  {
     index: "20",
     slug: "ozen-optik",
     name: "Özen Optik",
@@ -797,6 +848,10 @@ export const portfolioProjectNotes: Record<string, { headline: string; detail: s
   "trabzon-universitesi": {
     headline: "Fakülteye odaklanan film.",
     detail: "İletişim Fakültesi için kurumsal bir tanıtım filmi hazırladık. Seçkide, üniversitenin genel mesajı yerine bu fakülteye ayrılmış çalışmayı izleyebilirsin.",
+  },
+  "kd-katik-doner": {
+    headline: "Altı şubeden bir seçki.",
+    detail: "Rize, Söğütlü, Of, Araklı, Meydan ve Pelitli şubeleri için mutfak, ürün hazırlığı ve servis anlarına odaklanan içerikler hazırladık. Şube videolarını, mutfak ve ekibi gösteren ayrı bir filmle tamamladık.",
   },
   "ozen-optik": {
     headline: "Mağazadan ürün detayına.",

@@ -105,6 +105,32 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
+    index: "20",
+    slug: "ozen-optik",
+    name: "Özen Optik",
+    category: "Optik · Perakende",
+    summary:
+      "Özen Optik'in mağazasını, gözlük koleksiyonunu ve ürün inceleme deneyimini iki ayrı dikey tanıtım filmiyle anlattık.",
+    services: ["Mağaza & ürün çekimi", "Reels prodüksiyonu", "Kurgu & renk"],
+    logo: "/logos/ozen-optik.svg",
+    logoAlt: "Özen Optik Lens logosu",
+    logoShape: "wide",
+    logoTreatment: "dark",
+    panel: "dark",
+    media: [
+      {
+        src: "/work/ozen-optik/kisa-tanitim-filmi.mp4",
+        poster: "/work/ozen-optik/kisa-tanitim-filmi.webp",
+        title: "Özen Optik kısa tanıtım filmi",
+      },
+      {
+        src: "/work/ozen-optik/magaza-ve-urun-tanitimi.mp4",
+        poster: "/work/ozen-optik/magaza-ve-urun-tanitimi.webp",
+        title: "Özen Optik mağaza ve ürün tanıtımı",
+      },
+    ],
+  },
+  {
     index: "04",
     slug: "maziden-atiye-puruthana",
     name: "Bayburt Puruthana",
@@ -771,6 +797,10 @@ export const portfolioProjectNotes: Record<string, { headline: string; detail: s
   "trabzon-universitesi": {
     headline: "Fakülteye odaklanan film.",
     detail: "İletişim Fakültesi için kurumsal bir tanıtım filmi hazırladık. Seçkide, üniversitenin genel mesajı yerine bu fakülteye ayrılmış çalışmayı izleyebilirsin.",
+  },
+  "ozen-optik": {
+    headline: "Mağazadan ürün detayına.",
+    detail: "Mağazanın içini, gözlük koleksiyonunu ve ürün inceleme anlarını iki ayrı dikey filmde bir araya getirdik. Kısa tanıtımı, mağaza ve ürünlere daha geniş yer veren ikinci filmle tamamladık.",
   },
   "maziden-atiye-puruthana": {
     headline: "Ustalığın aşamalarını gösterdik.",

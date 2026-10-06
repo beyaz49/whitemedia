@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Akademisyen Anne Anaokulu</title>
+  <desc id="desc">Anne ve çocuğu simgeleyen amblem ile Akademisyen Anne Anaokulu yazısı</desc>
+  <g fill="#111">
+    <g transform="translate(26 12)">
+      <path
+        d="M112 96C196 80 266 121 273 195c8 79-51 130-122 122-53-6-87-38-84-80 3-40 36-65 78-61 25 2 43 14 55 31"
+        fill="none"
+        stroke="#111"
+        stroke-width="39"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <circle cx="174" cy="49" r="27"/>
+      <circle cx="88" cy="154" r="23"/>
+      <path d="M47 199c22-25 58-27 91-8" fill="none" stroke="#111" stroke-width="29" stroke-linecap="round"/>
+      <ellipse cx="112" cy="36" rx="9" ry="20" transform="rotate(-42 112 36)"/>
+      <ellipse cx="78" cy="57" rx="9" ry="21" transform="rotate(-60 78 57)"/>
+      <ellipse cx="232" cy="47" rx="9" ry="21" transform="rotate(48 232 47)"/>
+      <ellipse cx="261" cy="77" rx="9" ry="22" transform="rotate(67 261 77)"/>
+      <ellipse cx="39" cy="148" rx="8" ry="19" transform="rotate(-67 39 148)"/>
+      <ellipse cx="54" cy="121" rx="8" ry="18" transform="rotate(-48 54 121)"/>
+      <ellipse cx="130" cy="134" rx="8" ry="19" transform="rotate(18 130 134)"/>
+    </g>
+    <text
+      x="380"
+      y="151"
+      font-family="Trebuchet MS, Arial, Helvetica, sans-serif"
+      font-size="86"
+      font-style="italic"
+      font-weight="500"
+      letter-spacing="-3"
+    >akademisyen anne</text>
+    <text
+      x="378"
+      y="276"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="116"
+      font-weight="800"
+      letter-spacing="8"
+    >ANAOKULU</text>
+  </g>
+</svg>

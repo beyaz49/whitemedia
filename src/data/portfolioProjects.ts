@@ -106,6 +106,27 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
+    index: "25",
+    slug: "gul-mar",
+    name: "Gül Mar",
+    category: "Market · Lokasyon Tanıtımı",
+    summary:
+      "Gül Mar Yıldızlı Şubesi'nin konumunu; çevredeki yerleşimleri, bağlantı yollarını ve şubeye ulaşımı gösteren drone görüntüleriyle anlattık.",
+    services: ["Drone çekimi", "Lokasyon gösterimi", "Kurgu & hareketli grafik"],
+    logo: "/logos/gul-mar.png",
+    logoAlt: "Gül Mar logosu",
+    logoShape: "wide",
+    logoTreatment: "dark",
+    panel: "dark",
+    media: [
+      {
+        src: "/work/gul-mar/yildizli-subesi-lokasyon.mp4",
+        poster: "/work/gul-mar/yildizli-subesi-lokasyon.webp",
+        title: "Gül Mar Yıldızlı Şubesi lokasyon gösterim filmi",
+      },
+    ],
+  },
+  {
     index: "23",
     slug: "genc-musiad-trabzon",
     name: "Genç MÜSİAD Trabzon",
@@ -913,6 +934,10 @@ export const portfolioProjectNotes: Record<string, { headline: string; detail: s
   "trabzon-universitesi": {
     headline: "Fakülteye odaklanan film.",
     detail: "İletişim Fakültesi için kurumsal bir tanıtım filmi hazırladık. Seçkide, üniversitenin genel mesajı yerine bu fakülteye ayrılmış çalışmayı izleyebilirsin.",
+  },
+  "gul-mar": {
+    headline: "Yıldızlı şubesine havadan rota.",
+    detail: "Gül Mar Yıldızlı Şubesi'nin konumunu; çevredeki yerleşimleri ve bağlantı yollarını referans gösteren drone görüntüleriyle adım adım anlattık.",
   },
   "genc-musiad-trabzon": {
     headline: "Etkinliğin öne çıkan anları.",

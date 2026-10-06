@@ -106,6 +106,27 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
+    index: "26",
+    slug: "akademisyen-anne",
+    name: "Akademisyen Anne Anaokulu",
+    category: "Anaokulu · Tanıtım Filmi",
+    summary:
+      "Akademisyen Anne Anaokulu'nun açılış atmosferini, eğitim alanlarını ve çocukların okul deneyimini dinamik bir tanıtım filmiyle anlattık.",
+    services: ["Drone çekimi", "Açılış & mekân prodüksiyonu", "Kurgu & renk"],
+    logo: "/logos/akademisyen-anne.png",
+    logoAlt: "Akademisyen Anne Anaokulu logosu",
+    logoShape: "square",
+    logoTreatment: "dark",
+    panel: "dark",
+    media: [
+      {
+        src: "https://github.com/beyaz49/whitemedia/releases/download/akademisyen-anne-v1/akademisyen-anne-tanitim-filmi.mp4",
+        poster: "/work/akademisyen-anne/akademisyen-anne-tanitim-filmi.webp",
+        title: "Akademisyen Anne Anaokulu tanıtım filmi",
+      },
+    ],
+  },
+  {
     index: "25",
     slug: "gul-mar",
     name: "Gül Mar",
@@ -934,6 +955,10 @@ export const portfolioProjectNotes: Record<string, { headline: string; detail: s
   "trabzon-universitesi": {
     headline: "Fakülteye odaklanan film.",
     detail: "İletişim Fakültesi için kurumsal bir tanıtım filmi hazırladık. Seçkide, üniversitenin genel mesajı yerine bu fakülteye ayrılmış çalışmayı izleyebilirsin.",
+  },
+  "akademisyen-anne": {
+    headline: "Açılıştan sınıflara uzanan okul filmi.",
+    detail: "Drone görüntülerini, açılış anlarını, eğitim alanlarını ve çocukların okul deneyimini tek bir dikey tanıtım filminde bir araya getirdik.",
   },
   "gul-mar": {
     headline: "Yıldızlı şubesine havadan rota.",

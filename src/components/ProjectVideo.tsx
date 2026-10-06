@@ -5,6 +5,7 @@ import type { ProjectMedia } from "@/data/portfolioProjects";
 export default function ProjectVideo({ media }: { media: ProjectMedia }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [active, setActive] = useState(false);
+  const isLandscape = media.format === "landscape";
 
   function playVideo() {
     const video = videoRef.current;
@@ -18,7 +19,7 @@ export default function ProjectVideo({ media }: { media: ProjectMedia }) {
   }
 
   return (
-    <article className="case-media reveal">
+    <article className={`case-media reveal${isLandscape ? " case-media--landscape" : ""}`}>
       <div className="case-media__frame">
         <video
           ref={videoRef}

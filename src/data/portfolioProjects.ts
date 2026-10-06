@@ -2,6 +2,7 @@ export type ProjectMedia = {
   src: string;
   poster: string;
   title: string;
+  format?: "portrait" | "landscape";
 };
 
 export type PortfolioProject = {
@@ -194,6 +195,7 @@ export const portfolioProjects: PortfolioProject[] = [
         src: "https://github.com/beyaz49/whitemedia/releases/download/meryem-surmen-portakal-v1/zirvedeki-hayatlar-portakal-belgeseli.mp4",
         poster: "/work/meryem-surmen/zirvedeki-hayatlar-portakal-belgeseli.webp",
         title: "Zirvedeki Hayatlar — Portakal Belgeseli",
+        format: "landscape",
       },
     ],
   },

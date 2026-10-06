@@ -2219,6 +2219,10 @@ a {
   background: var(--mist);
 }
 
+.case-media--landscape {
+  grid-column: 1 / -1;
+}
+
 .case-media__frame {
   position: relative;
   aspect-ratio: 9 / 16;
@@ -2275,6 +2279,16 @@ a {
   border: 0;
   background: var(--ink);
   object-fit: cover;
+}
+
+.case-media--landscape .case-media__frame,
+.case-media--landscape .case-media__video {
+  aspect-ratio: 16 / 9;
+}
+
+.case-media--landscape .case-media__preview img,
+.case-media--landscape .case-media__video {
+  object-fit: contain;
 }
 
 .case-media__caption {

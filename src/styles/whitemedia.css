@@ -382,9 +382,13 @@ a {
   will-change: transform;
 }
 
+.hero-marquee--intro .hero-marquee__track {
+  animation-delay: 1.82s;
+}
+
 @keyframes heroReel {
-  from { transform: translate3d(calc(-50% - 8px), 0, 0); }
-  to { transform: translate3d(0, 0, 0); }
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(calc(-50% - 8px), 0, 0); }
 }
 
 .hero-marquee__card {

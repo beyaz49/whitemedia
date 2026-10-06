@@ -17,24 +17,14 @@ import { getWhatsAppUrl } from "@/lib/whatsapp";
 let introWasShown = false;
 
 const SHOWCASE_VIDEOS = [
-  "/hero/faber-preview.mp4", // Faber'in tam filmi proje sayfasında
-  "/hero/kd-katik-preview.mp4", // ürün / mutfak; şube filmleri proje sayfasında
-  "/videos/clip-1.mp4", // sağlık
-  "/hero/ozen-preview.mp4", // optik / ürün; tam filmler proje sayfasında
-  "/videos/clip-14.mp4", // kafe
-  "/videos/clip-8.mp4", // otomotiv / lokasyon
-  "/work/ay-gida/karadeniz-export-cayi-urun-filmi.mp4", // üretim / ürün
-  "/videos/clip-10.mp4", // restoran prodüksiyonu
-  "/videos/clip-2.mp4", // geleneksel üretim
-  "/videos/clip-6.mp4", // turizm / drone
-  "/videos/clip-12.mp4", // tatlı prodüksiyonu
-  "/videos/clip-9.mp4", // otomotiv / ürün
-  "/videos/clip-15.mp4", // sağlık
-  "/videos/clip-13.mp4", // pizza prodüksiyonu
-  "/videos/clip-3.mp4", // geleneksel üretim
-  "/videos/clip-11.mp4", // gastronomi / manzara
-  "/videos/clip-7.mp4", // içecek prodüksiyonu
-  "/videos/clip-16.mp4", // restoran sunumu
+  "/hero/vera-dessert-preview.mp4", // The Vera — çikolata ve ürün yakın planları
+  "/hero/katik-food-preview.mp4", // KD Katık — mutfak ve ürün prodüksiyonu
+  "/hero/gul-mar-location-preview.mp4", // Gül Mar — drone ve lokasyon grafikleri
+  "/hero/pesent-grill-preview.mp4", // Pesent — ocakbaşı ve hazırlık detayları
+  "/hero/aksu-villa-preview.mp4", // Aksu — villa, drone ve iç mekân çekimleri
+  "/hero/vera-latte-preview.mp4", // The Vera — kahve hazırlığı ve sunumu
+  "/hero/modatepe-resort-preview.mp4", // Modatepe — şömine, tesis ve doğa
+  "/hero/ozen-products-preview.mp4", // Özen Optik — gözlük ve mağaza detayları
 ] as const;
 
 const TICKER = [

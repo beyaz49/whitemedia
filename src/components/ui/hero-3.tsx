@@ -88,7 +88,10 @@ function MarqueeVideo({ src, position }: { src: string; position: number }) {
         const video = event.currentTarget;
         if (!Number.isFinite(video.duration) || video.duration <= 1) return;
 
-        const ratio = VIDEO_START_RATIOS[position % VIDEO_START_RATIOS.length];
+        // Curated previews already begin with their strongest shot.
+        const ratio = src.startsWith("/hero/")
+          ? 0
+          : VIDEO_START_RATIOS[position % VIDEO_START_RATIOS.length];
         video.currentTime = Math.min(video.duration * ratio, video.duration - 0.5);
         startPositionSetRef.current = true;
       }}

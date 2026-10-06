@@ -177,6 +177,27 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
+    index: "22",
+    slug: "meryem-surmen",
+    name: "Meryem Sürmen",
+    category: "Belgesel · Portre",
+    summary:
+      "Meryem Sürmen'in yaşamını ve anlatısını, Karadeniz'in yükseklerindeki gündelik hayatı ve dağ coğrafyasını buluşturan bir portre belgeseline dönüştürdük.",
+    services: ["Belgesel prodüksiyonu", "Röportaj & saha çekimi", "Kurgu & renk"],
+    logo: "/logos/zirvedeki-hayatlar.svg",
+    logoAlt: "Meryem Sürmen — Zirvedeki Hayatlar: Portakal Belgeseli yazı logosu",
+    logoShape: "wide",
+    logoTreatment: "dark",
+    panel: "dark",
+    media: [
+      {
+        src: "https://github.com/beyaz49/whitemedia/releases/download/meryem-surmen-portakal-v1/zirvedeki-hayatlar-portakal-belgeseli.mp4",
+        poster: "/work/meryem-surmen/zirvedeki-hayatlar-portakal-belgeseli.webp",
+        title: "Zirvedeki Hayatlar — Portakal Belgeseli",
+      },
+    ],
+  },
+  {
     index: "04",
     slug: "maziden-atiye-puruthana",
     name: "Bayburt Puruthana",
@@ -851,6 +872,10 @@ export const portfolioProjectNotes: Record<string, { headline: string; detail: s
   "ozen-optik": {
     headline: "Mağazadan ürün detayına.",
     detail: "Mağazanın içini, gözlük koleksiyonunu ve ürün inceleme anlarını iki ayrı dikey filmde bir araya getirdik. Kısa tanıtımı, mağaza ve ürünlere daha geniş yer veren ikinci filmle tamamladık.",
+  },
+  "meryem-surmen": {
+    headline: "Zirvedeki bir yaşam hikâyesi.",
+    detail: "Meryem Sürmen'in anlatısını; portre röportajları, gündelik yaşam görüntüleri ve dağ coğrafyasını kuran planlarla tek bir belgesel filmde buluşturduk.",
   },
   "maziden-atiye-puruthana": {
     headline: "Ustalığın aşamalarını gösterdik.",

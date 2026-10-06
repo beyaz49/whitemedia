@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 260" role="img" aria-labelledby="title desc">
+  <title id="title">Kolot Mimarlık</title>
+  <desc id="desc">Kolot Mimarlık için tipografik marka işareti</desc>
+  <g fill="none" stroke="#111" stroke-linecap="square" stroke-width="16">
+    <path d="M72 48v164M72 134l112-86M72 134l120 78"/>
+    <path d="M218 48v164" opacity=".35"/>
+  </g>
+  <g fill="#111" font-family="Arial, Helvetica, sans-serif">
+    <text x="276" y="125" font-size="88" font-weight="800" letter-spacing="12">KOLOT</text>
+    <text x="282" y="194" font-size="38" font-weight="600" letter-spacing="18">MİMARLIK</text>
+  </g>
+</svg>

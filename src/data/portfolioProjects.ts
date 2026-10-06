@@ -148,6 +148,28 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
+    index: "27",
+    slug: "kolot-mimarlik",
+    name: "Kolot Mimarlık",
+    category: "Mimarlık · Proje Tanıtımı",
+    summary:
+      "Kolot Mimarlık'ın konut projesini; yapının çevresini, deniz manzarasını, konumunu ve proje özelliklerini öne çıkaran drone görüntüleriyle anlattık.",
+    services: ["Drone çekimi", "Konut projesi tanıtımı", "Kurgu & hareketli grafik"],
+    logo: "/logos/kolot-mimarlik.svg",
+    logoAlt: "Kolot Mimarlık logosu",
+    logoShape: "wide",
+    logoTreatment: "light",
+    panel: "dark",
+    media: [
+      {
+        src: "/work/kolot-mimarlik/konut-projesi-tanitim-filmi.mp4",
+        poster: "/work/kolot-mimarlik/konut-projesi-tanitim-filmi.webp",
+        title: "Kolot Mimarlık konut projesi tanıtım filmi",
+        format: "landscape",
+      },
+    ],
+  },
+  {
     index: "23",
     slug: "genc-musiad-trabzon",
     name: "Genç MÜSİAD Trabzon",
@@ -963,6 +985,10 @@ export const portfolioProjectNotes: Record<string, { headline: string; detail: s
   "gul-mar": {
     headline: "Yıldızlı şubesine havadan rota.",
     detail: "Gül Mar Yıldızlı Şubesi'nin konumunu; çevredeki yerleşimleri ve bağlantı yollarını referans gösteren drone görüntüleriyle adım adım anlattık.",
+  },
+  "kolot-mimarlik": {
+    headline: "Projeyi çevresiyle birlikte gösterdik.",
+    detail: "Konut projesini; Tarihi Orta Mahalle'ye yakınlığı, deniz manzarası, blok yapısı ve öne çıkan özellikleriyle drone görüntüleri ve hareketli grafikler üzerinden anlattık.",
   },
   "genc-musiad-trabzon": {
     headline: "Etkinliğin öne çıkan anları.",

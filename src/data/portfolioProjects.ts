@@ -137,7 +137,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         src: "/work/kd-katik-doner/sogutlu-sube-tanitimi.mp4",
         poster: "/work/kd-katik-doner/sogutlu-sube-tanitimi.webp",
-        title: "Söğütlü şubesi — Ürün sunumu",
+        title: "Rize şubesi — Ürün sunumu",
       },
       {
         src: "/work/kd-katik-doner/of-sube-tanitimi.mp4",

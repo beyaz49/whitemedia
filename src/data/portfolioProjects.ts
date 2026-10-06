@@ -170,6 +170,27 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
+    index: "28",
+    slug: "cahit-sahin",
+    name: "Uz. Dr. Cahit Şahin",
+    category: "Çocuk Sağlığı · Kurgu",
+    summary:
+      "Uz. Dr. Cahit Şahin'in bebeklerde boğmaca hastalığına ilişkin uzman anlatımını; vaka görüntüleri, kaynak ekranları ve dinamik altyazılarla sosyal medya için kurguladık.",
+    services: ["Kurgu & post prodüksiyon", "Altyazı tasarımı", "Arşiv & kaynak yerleştirme"],
+    logo: "/logos/cahit-sahin.svg",
+    logoAlt: "Uz. Dr. Cahit Şahin — Çocuk Sağlığı ve Hastalıkları Uzmanı yazı logosu",
+    logoShape: "wide",
+    logoTreatment: "light",
+    panel: "dark",
+    media: [
+      {
+        src: "/work/cahit-sahin/bebeklerde-bogmaca-uzman-bilgilendirme.mp4",
+        poster: "/work/cahit-sahin/bebeklerde-bogmaca-uzman-bilgilendirme.webp",
+        title: "Bebeklerde boğmaca — Uzman bilgilendirme kurgusu",
+      },
+    ],
+  },
+  {
     index: "23",
     slug: "genc-musiad-trabzon",
     name: "Genç MÜSİAD Trabzon",
@@ -989,6 +1010,10 @@ export const portfolioProjectNotes: Record<string, { headline: string; detail: s
   "kolot-mimarlik": {
     headline: "Projeyi çevresiyle birlikte gösterdik.",
     detail: "Konut projesini; Tarihi Orta Mahalle'ye yakınlığı, deniz manzarası, blok yapısı ve öne çıkan özellikleriyle drone görüntüleri ve hareketli grafikler üzerinden anlattık.",
+  },
+  "cahit-sahin": {
+    headline: "Uzman anlatımını güçlü bir akışa dönüştürdük.",
+    detail: "Bebeklerde boğmaca konusunu ele alan anlatımı; vaka görüntüleri, kaynak ekranları, vurgu metinleri ve tempolu geçişlerle dikey bir bilgilendirme videosunda kurguladık.",
   },
   "genc-musiad-trabzon": {
     headline: "Etkinliğin öne çıkan anları.",

@@ -149,6 +149,11 @@ export const portfolioProjects: PortfolioProject[] = [
         poster: "/work/kd-katik-doner/arakli-sube-tanitimi.webp",
         title: "Araklı şubesi — Reels filmi",
       },
+      {
+        src: "/work/kd-katik-doner/sogutlu-mutfak-ve-ekip-filmi.mp4",
+        poster: "/work/kd-katik-doner/sogutlu-mutfak-ve-ekip-filmi.webp",
+        title: "Söğütlü şubesi — Mutfak ve ekip filmi",
+      },
     ],
   },
   {

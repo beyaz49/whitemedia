@@ -148,11 +148,6 @@ export const portfolioProjects: PortfolioProject[] = [
         poster: "/work/kd-katik-doner/arakli-sube-tanitimi.webp",
         title: "Araklı şubesi — Reels filmi",
       },
-      {
-        src: "/work/kd-katik-doner/urun-tanitim-filmi.mp4",
-        poster: "/work/kd-katik-doner/urun-tanitim-filmi.webp",
-        title: "KD Katık Döner — Mutfak ve ekip filmi",
-      },
     ],
   },
   {
@@ -851,7 +846,7 @@ export const portfolioProjectNotes: Record<string, { headline: string; detail: s
   },
   "kd-katik-doner": {
     headline: "Altı şubeden bir seçki.",
-    detail: "Rize, Söğütlü, Of, Araklı, Meydan ve Pelitli şubeleri için mutfak, ürün hazırlığı ve servis anlarına odaklanan içerikler hazırladık. Şube videolarını, mutfak ve ekibi gösteren ayrı bir filmle tamamladık.",
+    detail: "Rize, Söğütlü, Of, Araklı, Meydan ve Pelitli şubeleri için mutfak, ürün hazırlığı ve servis anlarına odaklanan içerikler hazırladık.",
   },
   "ozen-optik": {
     headline: "Mağazadan ürün detayına.",

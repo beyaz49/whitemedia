@@ -114,7 +114,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "Etkinliğin konuşmalarını, katılımcılarını ve ödül anlarını kurumsal bir filmde bir araya getirdik.",
     services: ["Etkinlik çekimi", "Video prodüksiyon", "Kurgu & post prodüksiyon"],
     logo: "/logos/genc-musiad-trabzon.svg",
-    logoAlt: "Genç MÜSİAD Trabzon yazı logosu",
+    logoAlt: "Genç MÜSİAD Trabzon logosu",
     logoShape: "wide",
     logoTreatment: "light",
     panel: "dark",
@@ -231,8 +231,8 @@ export const portfolioProjects: PortfolioProject[] = [
     name: "Aksu Emlak",
     category: "Gayrimenkul · Tanıtım",
     summary:
-      "Konutun mimarisini ve çevre manzarasını öne çıkaran dikey bir gayrimenkul filmi hazırladık.",
-    services: ["Konut çekimi", "Video prodüksiyon", "Kurgu & renk"],
+      "İstanbul merkezli Aksu Emlak için Trabzon’daki satılık villanın mimarisini, iç mekânlarını ve çevresini öne çıkaran bir tanıtım filmi hazırladık.",
+    services: ["Villa çekimi", "Video prodüksiyon", "Kurgu & renk"],
     logo: "/logos/aksu-emlak.svg",
     logoAlt: "Aksu Emlak yazı logosu",
     logoShape: "wide",
@@ -242,7 +242,7 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         src: "/work/aksu-emlak/boztepe-konut-tanitimi.mp4",
         poster: "/work/aksu-emlak/boztepe-konut-tanitimi.webp",
-        title: "Konut ve çevre tanıtım filmi",
+        title: "Trabzon’da satılık villa tanıtım filmi",
       },
     ],
   },
@@ -931,8 +931,8 @@ export const portfolioProjectNotes: Record<string, { headline: string; detail: s
     detail: "Meryem Sürmen'in anlatısını; portre röportajları, gündelik yaşam görüntüleri ve dağ coğrafyasını kuran planlarla tek bir belgesel filmde buluşturduk.",
   },
   "aksu-emlak": {
-    headline: "Mekân ve manzara bir arada.",
-    detail: "Konutun dış görünümünü, iç mekânını ve çevresini kısa bir tanıtım filminde gösterdik.",
+    headline: "Trabzon’da satılık villaya özel film.",
+    detail: "İstanbul merkezli Aksu Emlak’ın Trabzon’daki satılık villası için çekim ve kurgu çalışması gerçekleştirdik. Villanın dış cephesini, iç mekânlarını ve çevresini, satış sürecini destekleyen bir tanıtım filminde bir araya getirdik.",
   },
   "maziden-atiye-puruthana": {
     headline: "Ustalığın aşamalarını gösterdik.",

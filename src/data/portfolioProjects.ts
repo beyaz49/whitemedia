@@ -113,7 +113,7 @@ export const portfolioProjects: PortfolioProject[] = [
     summary:
       "Akademisyen Anne Anaokulu'nun açılış atmosferini, eğitim alanlarını ve çocukların okul deneyimini dinamik bir tanıtım filmiyle anlattık.",
     services: ["Drone çekimi", "Açılış & mekân prodüksiyonu", "Kurgu & renk"],
-    logo: "/logos/akademisyen-anne-wide.png?v=2",
+    logo: "/logos/akademisyen-anne-vector.svg?v=3",
     logoAlt: "Akademisyen Anne Anaokulu logosu",
     logoShape: "wide",
     logoTreatment: "dark",

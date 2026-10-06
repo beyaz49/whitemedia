@@ -106,6 +106,27 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
+    index: "23",
+    slug: "genc-musiad-trabzon",
+    name: "Genç MÜSİAD Trabzon",
+    category: "Etkinlik · Kurumsal Film",
+    summary:
+      "Etkinliğin konuşmalarını, katılımcılarını ve ödül anlarını kurumsal bir filmde bir araya getirdik.",
+    services: ["Etkinlik çekimi", "Video prodüksiyon", "Kurgu & post prodüksiyon"],
+    logo: "/logos/genc-musiad-trabzon.svg",
+    logoAlt: "Genç MÜSİAD Trabzon yazı logosu",
+    logoShape: "wide",
+    logoTreatment: "light",
+    panel: "dark",
+    media: [
+      {
+        src: "/work/genc-musiad-trabzon/etkinlik-filmi.mp4",
+        poster: "/work/genc-musiad-trabzon/etkinlik-filmi.webp",
+        title: "Genç MÜSİAD Trabzon etkinlik filmi",
+      },
+    ],
+  },
+  {
     index: "21",
     slug: "kd-katik-doner",
     name: "KD Katık Döner",
@@ -201,6 +222,27 @@ export const portfolioProjects: PortfolioProject[] = [
         poster: "/work/meryem-surmen/zirvedeki-hayatlar-portakal-belgeseli.webp",
         title: "Zirvedeki Hayatlar — Portakal Belgeseli",
         format: "landscape",
+      },
+    ],
+  },
+  {
+    index: "24",
+    slug: "aksu-emlak",
+    name: "Aksu Emlak",
+    category: "Gayrimenkul · Tanıtım",
+    summary:
+      "Konutun mimarisini ve çevre manzarasını öne çıkaran dikey bir gayrimenkul filmi hazırladık.",
+    services: ["Konut çekimi", "Video prodüksiyon", "Kurgu & renk"],
+    logo: "/logos/aksu-emlak.svg",
+    logoAlt: "Aksu Emlak yazı logosu",
+    logoShape: "wide",
+    logoTreatment: "light",
+    panel: "dark",
+    media: [
+      {
+        src: "/work/aksu-emlak/boztepe-konut-tanitimi.mp4",
+        poster: "/work/aksu-emlak/boztepe-konut-tanitimi.webp",
+        title: "Konut ve çevre tanıtım filmi",
       },
     ],
   },
@@ -872,6 +914,10 @@ export const portfolioProjectNotes: Record<string, { headline: string; detail: s
     headline: "Fakülteye odaklanan film.",
     detail: "İletişim Fakültesi için kurumsal bir tanıtım filmi hazırladık. Seçkide, üniversitenin genel mesajı yerine bu fakülteye ayrılmış çalışmayı izleyebilirsin.",
   },
+  "genc-musiad-trabzon": {
+    headline: "Etkinliğin öne çıkan anları.",
+    detail: "Konuşmaları, katılımcıları ve ödül anlarını tek bir etkinlik filminde buluşturduk.",
+  },
   "kd-katik-doner": {
     headline: "Altı şubeden bir seçki.",
     detail: "Rize, Söğütlü, Of, Araklı, Meydan ve Pelitli şubeleri için mutfak, ürün hazırlığı ve servis anlarına odaklanan içerikler hazırladık.",
@@ -883,6 +929,10 @@ export const portfolioProjectNotes: Record<string, { headline: string; detail: s
   "meryem-surmen": {
     headline: "Zirvedeki bir yaşam hikâyesi.",
     detail: "Meryem Sürmen'in anlatısını; portre röportajları, gündelik yaşam görüntüleri ve dağ coğrafyasını kuran planlarla tek bir belgesel filmde buluşturduk.",
+  },
+  "aksu-emlak": {
+    headline: "Mekân ve manzara bir arada.",
+    detail: "Konutun dış görünümünü, iç mekânını ve çevresini kısa bir tanıtım filminde gösterdik.",
   },
   "maziden-atiye-puruthana": {
     headline: "Ustalığın aşamalarını gösterdik.",

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" role="img" aria-label="Genç MÜSİAD Trabzon">
+  <g fill="#111" font-family="Arial, Helvetica, sans-serif">
+    <text x="75" y="93" font-size="65" font-weight="800" letter-spacing="4">GENÇ</text>
+    <text x="70" y="198" font-size="106" font-weight="900" letter-spacing="-1">MÜSİAD</text>
+    <path d="M75 217h809v5H75z"/>
+    <text x="79" y="266" font-size="37" font-weight="700" letter-spacing="16">TRABZON</text>
+  </g>
+</svg>

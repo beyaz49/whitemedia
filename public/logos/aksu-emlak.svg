@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 270" role="img" aria-label="Aksu Emlak">
+  <g fill="none" stroke="#111" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M42 145 142 58l100 87M65 130v86h154v-86" stroke-width="13"/>
+    <path d="M111 216v-57h62v57" stroke-width="10"/>
+  </g>
+  <g fill="#111" font-family="Arial, Helvetica, sans-serif">
+    <text x="292" y="150" font-size="91" font-weight="800" letter-spacing="7">AKSU</text>
+    <path d="M294 169h490v5H294z"/>
+    <text x="299" y="218" font-size="38" font-weight="700" letter-spacing="18">EMLAK</text>
+  </g>
+</svg>

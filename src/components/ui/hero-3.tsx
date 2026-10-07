@@ -184,18 +184,50 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
     let current = middleStart;
     let cancelled = false;
     let advanceTimer: number | undefined;
+    let scrollFrame: number | undefined;
 
-    const centerCard = (index: number, behavior: ScrollBehavior) => {
+    const getCardLeft = (index: number) => {
       const card = cardRefs.current[index];
-      if (!card) return;
+      if (!card) return null;
 
-      const left = card.offsetLeft - (reel.clientWidth - card.offsetWidth) / 2;
-      reel.scrollTo({ left, behavior });
+      return card.offsetLeft - (reel.clientWidth - card.offsetWidth) / 2;
+    };
+
+    const jumpToCard = (index: number) => {
+      const left = getCardLeft(index);
+      if (left === null) return;
+      if (scrollFrame !== undefined) window.cancelAnimationFrame(scrollFrame);
+      scrollFrame = undefined;
+      reel.scrollLeft = left;
+    };
+
+    const animateToCard = (index: number) => {
+      const target = getCardLeft(index);
+      if (target === null) return;
+
+      if (scrollFrame !== undefined) window.cancelAnimationFrame(scrollFrame);
+      const start = reel.scrollLeft;
+      const distance = target - start;
+      const startedAt = performance.now();
+
+      const move = (now: number) => {
+        const progress = Math.min((now - startedAt) / MOVE_MS, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        reel.scrollLeft = start + distance * eased;
+
+        if (progress < 1) {
+          scrollFrame = window.requestAnimationFrame(move);
+        } else {
+          scrollFrame = undefined;
+        }
+      };
+
+      scrollFrame = window.requestAnimationFrame(move);
     };
 
     const centerInitialCard = () => {
       setActiveCard(middleStart);
-      centerCard(middleStart, "auto");
+      jumpToCard(middleStart);
     };
 
     const initialFrame = window.requestAnimationFrame(centerInitialCard);
@@ -206,18 +238,18 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
       let next = current + 1;
       if (next > loopEnd) {
         // The third copy matches the middle copy exactly, so this reset is invisible.
-        centerCard(middleStart, "auto");
+        jumpToCard(middleStart);
         current = middleStart;
         next = middleStart + 1;
       }
 
       current = next;
       setActiveCard(current);
-      centerCard(current, "smooth");
+      animateToCard(current);
       advanceTimer = window.setTimeout(advance, MOVE_MS + DWELL_MS);
     };
 
-    const handleResize = () => centerCard(current, "auto");
+    const handleResize = () => jumpToCard(current);
     window.addEventListener("resize", handleResize);
 
     if (!reducedMotion) {
@@ -228,6 +260,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
     return () => {
       cancelled = true;
       window.cancelAnimationFrame(initialFrame);
+      if (scrollFrame !== undefined) window.cancelAnimationFrame(scrollFrame);
       if (advanceTimer !== undefined) window.clearTimeout(advanceTimer);
       window.removeEventListener("resize", handleResize);
     };

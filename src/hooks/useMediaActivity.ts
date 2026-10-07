@@ -10,7 +10,7 @@ export function useMediaActivity(ref: RefObject<HTMLElement>) {
     const update = () => setActive(inView && !document.hidden);
     const observer = "IntersectionObserver" in window
       ? new IntersectionObserver(([entry]) => {
-          inView = entry.isIntersecting && entry.intersectionRatio >= 0.1;
+          inView = entry.isIntersecting;
           update();
         }, { threshold: 0.1 })
       : null;

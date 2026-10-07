@@ -36,7 +36,7 @@ const SHOWCASE_VIDEOS = [
     name: project.name,
     title: project.media[media].title,
     category: project.category.split("·")[0].trim(),
-    preview: preview.replace(/\.mp4$/, "-lite.mp4"),
+    preview,
     poster: preview.replace(/\.mp4$/, ".webp"),
     src: project.media[media].src,
     projectHref: `/portfolyo/${slug}`,

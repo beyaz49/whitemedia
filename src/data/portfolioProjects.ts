@@ -15,8 +15,8 @@ export type PortfolioProject = {
   logo?: string;
   logoAlt: string;
   logoShape: "wide" | "square";
-  logoTreatment: "dark" | "light" | "on-dark" | "color";
-  panel: "dark" | "light" | "white";
+  logoTreatment: "dark" | "light" | "on-dark";
+  panel: "dark" | "light";
   media: ProjectMedia[];
 };
 
@@ -201,8 +201,8 @@ export const portfolioProjects: PortfolioProject[] = [
     logo: "/logos/fora-doner-burger-pizza.webp",
     logoAlt: "Fora Döner Burger Pizza logosu",
     logoShape: "wide",
-    logoTreatment: "color",
-    panel: "white",
+    logoTreatment: "light",
+    panel: "dark",
     media: [
       {
         src: "/work/fora-doner-burger-pizza/burger-hazirligi.mp4",

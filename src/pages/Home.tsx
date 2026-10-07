@@ -21,7 +21,6 @@ const SHOWCASE_VIDEOS = [
   {"slug": "medicalpark", "preview": "/hero/curated-doctor-interview.mp4", "media": 1},
   {"slug": "sancak-turizm", "preview": "/hero/curated-uzungol.mp4", "media": 0},
   {"slug": "pesent-restaurant", "preview": "/hero/curated-pide.mp4", "media": 3},
-  {"slug": "genc-musiad-trabzon", "preview": "/hero/curated-event.mp4", "media": 0},
   {"slug": "dk-gayrimenkul", "preview": "/hero/dk-showcase.mp4", "media": 0},
   {"slug": "kozalaklar-oyun-atolyesi", "preview": "/hero/curated-snow.mp4", "media": 2},
   {"slug": "gursoy-insaat", "preview": "/hero/gursoy-showcase.mp4", "media": 2},
@@ -29,6 +28,7 @@ const SHOWCASE_VIDEOS = [
   {"slug": "modatepe-resort", "preview": "/hero/curated-breakfast.mp4", "media": 4},
   {"slug": "kardesler-oto-lastik", "preview": "/hero/curated-wheel-renewal.mp4", "media": 1},
   {"slug": "the-vera-cafe-restaurant", "preview": "/hero/vera-dessert-preview.mp4", "media": 11},
+  {"slug": "genc-musiad-trabzon", "preview": "/hero/curated-event.mp4", "media": 0},
   {"slug": "faber-gayrimenkul", "preview": "/hero/curated-sea-residence.mp4", "media": 4},
 ].map(({ slug, preview, media }) => {
   const project = portfolioProjectBySlug[slug];

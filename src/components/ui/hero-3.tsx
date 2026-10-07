@@ -18,8 +18,6 @@ interface AnimatedMarqueeHeroProps {
   className?: string;
 }
 
-const CARD_ROTATIONS = [-3, 2, -1, 3] as const;
-const CARD_OFFSETS = [10, -6, 4, 14] as const;
 const VIDEO_START_RATIOS = [0.22, 0.34, 0.28, 0.4, 0.18, 0.31] as const;
 const MotionLink = motion(Link);
 
@@ -168,22 +166,23 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
     },
   };
 
-  const middleStart = videos.length;
-  const loopEnd = videos.length * 2;
+  const loopStart = videos.length - 1;
+  const middleEnd = videos.length * 2 - 1;
   const reelRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const [activeCard, setActiveCard] = useState(middleStart);
-  const reelVideos = [...videos, ...videos, ...videos];
+  const [activeCard, setActiveCard] = useState(middleEnd);
+  const reversedVideos = [...videos].reverse();
+  const reelVideos = [...reversedVideos, ...reversedVideos, ...reversedVideos];
 
   useEffect(() => {
     const reel = reelRef.current;
     const track = trackRef.current;
     if (!reel || !track || videos.length === 0) return;
 
-    const MOVE_MS = 650;
-    const DWELL_MS = 1000;
-    let current = middleStart;
+    const MOVE_MS = 900;
+    const DWELL_MS = 2300;
+    let current = middleEnd;
     let cancelled = false;
     let advanceTimer: number | undefined;
 
@@ -198,15 +197,15 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
       const left = getCardLeft(index);
       if (left === null) return;
       track.style.transition = animate
-        ? `transform ${MOVE_MS}ms var(--ease)`
+        ? `transform ${MOVE_MS}ms cubic-bezier(.16, 1, .3, 1)`
         : "none";
       track.style.transform = `translate3d(${-left}px, 0, 0)`;
       if (!animate) void track.offsetWidth;
     };
 
     const centerInitialCard = () => {
-      setActiveCard(middleStart);
-      positionTrack(middleStart, false);
+      setActiveCard(middleEnd);
+      positionTrack(middleEnd, false);
     };
 
     const initialFrame = window.requestAnimationFrame(centerInitialCard);
@@ -214,12 +213,12 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
     const advance = () => {
       if (cancelled) return;
 
-      let next = current + 1;
-      if (next > loopEnd) {
-        // The third copy matches the middle copy exactly, so this reset is invisible.
-        positionTrack(middleStart, false);
-        current = middleStart;
-        next = middleStart + 1;
+      let next = current - 1;
+      if (next < loopStart) {
+        // Matching copies make this rightward loop reset invisible.
+        positionTrack(middleEnd, false);
+        current = middleEnd;
+        next = middleEnd - 1;
       }
 
       current = next;
@@ -242,7 +241,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
       if (advanceTimer !== undefined) window.clearTimeout(advanceTimer);
       window.removeEventListener("resize", handleResize);
     };
-  }, [loopEnd, middleStart, playIntro, reducedMotion, videos.length]);
+  }, [loopStart, middleEnd, playIntro, reducedMotion, videos.length]);
 
   return (
     <section
@@ -363,14 +362,6 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
                   "hero-marquee__card",
                   isActive && "hero-marquee__card--active"
                 )}
-                style={{
-                  rotate: isActive
-                    ? "0deg"
-                    : `${CARD_ROTATIONS[index % CARD_ROTATIONS.length]}deg`,
-                  translate: isActive
-                    ? "0 0"
-                    : `0 ${CARD_OFFSETS[index % CARD_OFFSETS.length]}px`,
-                }}
               >
                 <MarqueeVideo src={src} position={index % videos.length} />
               </div>

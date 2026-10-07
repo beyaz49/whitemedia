@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 
 export type ShowcaseVideo = {
   name: string;
+  title: string;
   category: string;
   preview: string;
   src: string;
@@ -149,7 +150,7 @@ export default function VideoShowcase({ videos }: { videos: readonly ShowcaseVid
                 }}>
                 <Preview video={video} playing={active && playing && !openVideo} />
                 <span className="video-showcase__card-shade" aria-hidden="true" />
-                <span className="video-showcase__card-label"><span>{video.name}</span><span>{video.category}</span></span>
+                <span className="video-showcase__card-label"><span>{video.name}</span><span>{video.title}</span></span>
                 <span className="video-showcase__watch"><Play size={12} aria-hidden="true" /><span>Videoyu izle</span></span>
               </button>
             </div>

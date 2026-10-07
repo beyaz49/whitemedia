@@ -1,8 +1,10 @@
 export type ProjectMedia = {
+  type?: "video" | "image" | "instagram";
   src: string;
   poster: string;
   title: string;
   format?: "portrait" | "landscape";
+  instagramUsername?: string;
 };
 
 export type PortfolioProject = {
@@ -27,6 +29,36 @@ const video = (clip: number, title: string): ProjectMedia => ({
 });
 
 export const portfolioProjects: PortfolioProject[] = [
+  {
+    index: "31",
+    slug: "erdem-sanli",
+    name: "Erdem Şanlı — Samsung Galaxy",
+    category: "Teknoloji · Reklam Prodüksiyonu",
+    summary:
+      "Oyuncu Erdem Şanlı ile Samsung Galaxy için telefon reklamı ve kampanya fotoğrafları hazırladık. Ürünü öne çıkaran video ve portre çekimlerini aynı kampanyada bir araya getirdik.",
+    services: ["Reklam filmi çekimi", "Kampanya fotoğraf çekimi", "Kurgu & renk"],
+    logo: "/logos/erdem-sanli-campaign.svg",
+    logoAlt: "Erdem Şanlı — Samsung Galaxy kampanya başlığı",
+    logoShape: "wide",
+    logoTreatment: "light",
+    panel: "dark",
+    media: [
+      {
+        type: "instagram",
+        src: "https://www.instagram.com/erdemsanlii/p/DXfOiAqDayn/",
+        poster: "/work/erdem-sanli/samsung-galaxy-reklam-filmi.webp",
+        title: "Samsung Galaxy — Reklam videosu",
+        instagramUsername: "erdemsanlii",
+      },
+      {
+        type: "instagram",
+        src: "https://www.instagram.com/erdemsanlii/p/DYFI8xSjGiA/",
+        poster: "/work/erdem-sanli/samsung-galaxy-post-01.jpg",
+        title: "Samsung Galaxy — Kampanya fotoğrafları",
+        instagramUsername: "erdemsanlii",
+      },
+    ],
+  },
   {
     index: "01",
     slug: "medicalpark",
@@ -1049,6 +1081,10 @@ export const portfolioProjects: PortfolioProject[] = [
 // These notes describe only work visible in each project's selected media.
 // They do not imply campaign results or client briefs we cannot verify.
 export const portfolioProjectNotes: Record<string, { headline: string; detail: string }> = {
+  "erdem-sanli": {
+    headline: "Reklam filmi ve fotoğraflarla tek bir kampanya.",
+    detail: "Samsung Galaxy telefon reklamını Erdem Şanlı ile çektik. Reklam videosu ve kampanya fotoğraflarını, Erdem Şanlı'nın kendi hesabında paylaştığı iki Instagram gönderisi üzerinden inceleyebilirsin.",
+  },
   medicalpark: {
     headline: "Kurum ve uzman anlatımı.",
     detail: "Hastane tanıtım filmini iki ayrı uzman görüşüyle tamamladık. Cerrahi onkoloji ve göz kapağı sarkması konularını, kurumsal tanıtımdan ayrı videolarda işledik.",

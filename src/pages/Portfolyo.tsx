@@ -73,10 +73,8 @@ export default function Portfolyo() {
           </h2>
 
           <div className="work collab-grid">
-            <a
-              href="https://instagram.com/erdemsanlii"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              to="/portfolyo/erdem-sanli"
               className="exhibit reveal collab-card"
             >
               <img
@@ -85,8 +83,8 @@ export default function Portfolyo() {
                 alt="Erdem Şanlı"
               />
               <h3 className="collab-card__title">Erdem Şanlı</h3>
-              <p className="collab-card__handle">@erdemsanlii</p>
-            </a>
+              <p className="collab-card__handle">2 Instagram paylaşımını gör ↗</p>
+            </Link>
 
             <a
               href="https://instagram.com/kadmfutbol"

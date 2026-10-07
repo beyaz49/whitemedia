@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import BrandMark from "@/components/BrandMark";
 import PageMeta from "@/components/PageMeta";
 import ProjectVideo from "@/components/ProjectVideo";
+import ProjectImage from "@/components/ProjectImage";
+import ProjectInstagram from "@/components/ProjectInstagram";
 import {
   portfolioProjectBySlug,
   portfolioProjectNotes,
@@ -45,6 +47,8 @@ export default function ProjeDetay() {
       ? projectsWithWork[(currentPosition + 1) % projectsWithWork.length]
       : projectsWithWork[0];
   const projectNote = portfolioProjectNotes[project.slug];
+  const hasOnlyInstagramPosts =
+    project.media.length > 0 && project.media.every((media) => media.type === "instagram");
 
   return (
     <main>
@@ -104,18 +108,22 @@ export default function ProjeDetay() {
         <div className="wrap">
           <div className="sec-head reveal">
             <div>
-              <p className="kicker">Seçili işler</p>
-              <h2 className="display sec-title">Ürettiklerimiz</h2>
+              <p className="kicker">{hasOnlyInstagramPosts ? "Instagram paylaşımları" : "Seçili işler"}</p>
+              <h2 className="display sec-title">{hasOnlyInstagramPosts ? "Hesabında paylaşılanlar" : "Ürettiklerimiz"}</h2>
             </div>
             <span className="case-work__count">
-              {String(project.media.length).padStart(2, "0")} içerik
+              {String(project.media.length).padStart(2, "0")} {hasOnlyInstagramPosts ? "gönderi" : "içerik"}
             </span>
           </div>
 
           {project.media.length > 0 ? (
-            <div className="case-gallery">
+            <div className={`case-gallery${hasOnlyInstagramPosts ? " case-gallery--instagram" : ""}`}>
               {project.media.map((media) => (
-                <ProjectVideo key={media.src} media={media} />
+                media.type === "instagram"
+                  ? <ProjectInstagram key={media.src} media={media} />
+                  : media.type === "image"
+                  ? <ProjectImage key={media.src} media={media} />
+                  : <ProjectVideo key={media.src} media={media} />
               ))}
             </div>
           ) : (

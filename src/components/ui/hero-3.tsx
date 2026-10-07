@@ -171,20 +171,21 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
   const middleStart = videos.length;
   const loopEnd = videos.length * 2;
   const reelRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const [activeCard, setActiveCard] = useState(middleStart);
   const reelVideos = [...videos, ...videos, ...videos];
 
   useEffect(() => {
     const reel = reelRef.current;
-    if (!reel || videos.length === 0) return;
+    const track = trackRef.current;
+    if (!reel || !track || videos.length === 0) return;
 
     const MOVE_MS = 650;
     const DWELL_MS = 1000;
     let current = middleStart;
     let cancelled = false;
     let advanceTimer: number | undefined;
-    let scrollFrame: number | undefined;
 
     const getCardLeft = (index: number) => {
       const card = cardRefs.current[index];
@@ -193,41 +194,19 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
       return card.offsetLeft - (reel.clientWidth - card.offsetWidth) / 2;
     };
 
-    const jumpToCard = (index: number) => {
+    const positionTrack = (index: number, animate: boolean) => {
       const left = getCardLeft(index);
       if (left === null) return;
-      if (scrollFrame !== undefined) window.cancelAnimationFrame(scrollFrame);
-      scrollFrame = undefined;
-      reel.scrollLeft = left;
-    };
-
-    const animateToCard = (index: number) => {
-      const target = getCardLeft(index);
-      if (target === null) return;
-
-      if (scrollFrame !== undefined) window.cancelAnimationFrame(scrollFrame);
-      const start = reel.scrollLeft;
-      const distance = target - start;
-      const startedAt = performance.now();
-
-      const move = (now: number) => {
-        const progress = Math.min((now - startedAt) / MOVE_MS, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        reel.scrollLeft = start + distance * eased;
-
-        if (progress < 1) {
-          scrollFrame = window.requestAnimationFrame(move);
-        } else {
-          scrollFrame = undefined;
-        }
-      };
-
-      scrollFrame = window.requestAnimationFrame(move);
+      track.style.transition = animate
+        ? `transform ${MOVE_MS}ms var(--ease)`
+        : "none";
+      track.style.transform = `translate3d(${-left}px, 0, 0)`;
+      if (!animate) void track.offsetWidth;
     };
 
     const centerInitialCard = () => {
       setActiveCard(middleStart);
-      jumpToCard(middleStart);
+      positionTrack(middleStart, false);
     };
 
     const initialFrame = window.requestAnimationFrame(centerInitialCard);
@@ -238,18 +217,18 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
       let next = current + 1;
       if (next > loopEnd) {
         // The third copy matches the middle copy exactly, so this reset is invisible.
-        jumpToCard(middleStart);
+        positionTrack(middleStart, false);
         current = middleStart;
         next = middleStart + 1;
       }
 
       current = next;
       setActiveCard(current);
-      animateToCard(current);
+      positionTrack(current, true);
       advanceTimer = window.setTimeout(advance, MOVE_MS + DWELL_MS);
     };
 
-    const handleResize = () => jumpToCard(current);
+    const handleResize = () => positionTrack(current, false);
     window.addEventListener("resize", handleResize);
 
     if (!reducedMotion) {
@@ -260,7 +239,6 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
     return () => {
       cancelled = true;
       window.cancelAnimationFrame(initialFrame);
-      if (scrollFrame !== undefined) window.cancelAnimationFrame(scrollFrame);
       if (advanceTimer !== undefined) window.clearTimeout(advanceTimer);
       window.removeEventListener("resize", handleResize);
     };
@@ -371,7 +349,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
       </div>
 
       <div ref={reelRef} className="hero-marquee__reel" aria-hidden="true">
-        <div className="hero-marquee__track">
+        <div ref={trackRef} className="hero-marquee__track">
           {reelVideos.map((src, index) => {
             const isActive = index === activeCard;
 

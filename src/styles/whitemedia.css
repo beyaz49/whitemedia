@@ -380,7 +380,8 @@ a {
   flex-shrink: 0;
   gap: 16px;
   padding: 24px 0;
-  will-change: scroll-position;
+  transition: transform .65s var(--ease);
+  will-change: transform;
 }
 
 .hero-marquee__card {

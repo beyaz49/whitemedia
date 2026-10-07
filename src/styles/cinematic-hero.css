@@ -198,3 +198,8 @@
 @media (prefers-reduced-motion: reduce) {
   .video-showcase__card { transform: none; opacity: 1; }
 }
+
+.video-showcase__more { margin-top: 22px; padding-top: 24px; border-top: 1px solid #e8e8e5; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.video-showcase__more p { margin: 0; font-size: 13px; color: #70706c; }
+.video-showcase__more a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-size: 13px; font-weight: 600; }
+@media (max-width: 700px) { .video-showcase__more { flex-direction: column; align-items: flex-start; gap: 6px; } }

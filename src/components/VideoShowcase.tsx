@@ -20,15 +20,16 @@ const MANUAL_DWELL_MS = 15000;
 function Preview({ video, playing }: { video: ShowcaseVideo; playing: boolean }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [loaded, setLoaded] = useState(false);
+  const visible = useMediaActivity(ref);
 
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
-    if (playing) {
+    if (playing && visible) {
       setLoaded(true);
       void element.play().catch(() => undefined);
     } else element.pause();
-  }, [playing, loaded]);
+  }, [playing, visible, loaded]);
 
   return <video ref={ref} src={loaded ? video.preview : undefined} poster={video.poster} muted loop playsInline preload="none" aria-hidden="true" />;
 }
@@ -146,7 +147,7 @@ export default function VideoShowcase({ videos }: { videos: readonly ShowcaseVid
                   if (index === selected) setOpenVideo(video);
                   else embla?.scrollTo(index);
                 }}>
-                <Preview video={video} playing={active && playing && index === selected && !openVideo} />
+                <Preview video={video} playing={active && playing && !openVideo} />
                 <span className="video-showcase__card-shade" aria-hidden="true" />
                 <span className="video-showcase__card-label"><span>{video.name}</span><span>{video.category}</span></span>
                 <span className="video-showcase__watch"><Play size={12} aria-hidden="true" /><span>Videoyu izle</span></span>
@@ -164,6 +165,10 @@ export default function VideoShowcase({ videos }: { videos: readonly ShowcaseVid
           ))}
         </div>
         <span className="video-showcase__count" aria-live={playing ? "off" : "polite"}>{String(selected + 1).padStart(2, "0")} <span>/ {String(videos.length).padStart(2, "0")}</span></span>
+      </div>
+      <div className="wrap video-showcase__more">
+        <p>Bu, işlerimizden yalnızca bir seçki.</p>
+        <Link to="/portfolyo">Tüm projeleri keşfet <ArrowUpRight size={17} aria-hidden="true" /></Link>
       </div>
       <p className="sr-only" aria-live="polite">{!playing || dragging ? `${activeVideo?.name}, ${selected + 1} / ${videos.length}` : ""}</p>
       <dialog ref={dialogRef} className="showcase-dialog" aria-label={openVideo ? `${openVideo.name} videosu` : "Video"}

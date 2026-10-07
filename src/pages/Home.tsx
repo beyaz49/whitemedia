@@ -18,14 +18,16 @@ import "@/styles/cinematic-hero.css";
 let introWasShown = false;
 
 const SHOWCASE_VIDEOS = [
-  { slug: "ay-cay", preview: "/hero/ay-cay-tea-garden-preview.mp4", media: 0 },
-  { slug: "aksu-emlak", preview: "/hero/aksu-villa-preview.mp4", media: 0 },
+  { slug: "medicalpark", preview: "/hero/medicalpark-showcase.mp4", media: 0 },
+  { slug: "dk-gayrimenkul", preview: "/hero/dk-showcase.mp4", media: 0 },
+  { slug: "trabzon-universitesi", preview: "/hero/university-showcase.mp4", media: 0 },
   { slug: "the-vera-cafe-restaurant", preview: "/hero/vera-dessert-preview.mp4", media: 11 },
-  { slug: "gul-mar", preview: "/hero/gul-mar-location-preview.mp4", media: 0 },
-  { slug: "fora-doner-burger-pizza", preview: "/hero/fora-burger-preview.mp4", media: 0 },
+  { slug: "ay-gida", preview: "/hero/production-showcase.mp4", media: 0 },
   { slug: "modatepe-resort", preview: "/hero/modatepe-resort-preview.mp4", media: 0 },
-  { slug: "pesent-restaurant", preview: "/hero/pesent-grill-preview.mp4", media: 1 },
+  { slug: "yamanlar-oto-ekspertiz", preview: "/hero/yamanlar-showcase.mp4", media: 0 },
+  { slug: "gursoy-insaat", preview: "/hero/gursoy-showcase.mp4", media: 2 },
   { slug: "ozen-optik", preview: "/hero/ozen-products-preview.mp4", media: 1 },
+  { slug: "kolot-mimarlik", preview: "/hero/architecture-showcase.mp4", media: 0 },
 ].map(({ slug, preview, media }) => {
   const project = portfolioProjectBySlug[slug];
   return {

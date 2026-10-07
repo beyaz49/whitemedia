@@ -38,7 +38,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className="nav">
+      <nav className={location.pathname === "/" ? "nav nav--cinematic" : "nav"}>
         <div className="wrap nav__inner">
           <Link
             className="brand"

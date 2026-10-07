@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { AnimatedMarqueeHero } from "@/components/ui/hero-3";
+import CinematicHero from "@/components/CinematicHero";
+import VideoShowcase from "@/components/VideoShowcase";
 import BrandMark from "@/components/BrandMark";
 import PageMeta from "@/components/PageMeta";
 import {
@@ -11,21 +11,32 @@ import {
 } from "@/data/portfolioProjects";
 import { SERVICE_CATALOG } from "@/data/services";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
+import "@/styles/cinematic-hero.css";
 
 // The opening slate plays once per visit, including when Home is reached
 // from another route. Server rendering and the first client render agree.
 let introWasShown = false;
 
 const SHOWCASE_VIDEOS = [
-  "/hero/ay-cay-tea-garden-preview.mp4", // Ay Çay — ürün, sunucu ve çay bahçesi
-  "/hero/aksu-villa-preview.mp4", // Aksu — villa, drone ve iç mekân çekimleri
-  "/hero/vera-dessert-preview.mp4", // The Vera — çikolata ve ürün yakın planları
-  "/hero/gul-mar-location-preview.mp4", // Gül Mar — drone ve lokasyon grafikleri
-  "/hero/fora-burger-preview.mp4", // Fora — burger hazırlığı ve ürün yakın planları
-  "/hero/modatepe-resort-preview.mp4", // Modatepe — şömine, tesis ve doğa
-  "/hero/pesent-grill-preview.mp4", // Pesent — ocakbaşı ve hazırlık detayları
-  "/hero/ozen-products-preview.mp4", // Özen Optik — gözlük ve mağaza detayları
-] as const;
+  { slug: "ay-cay", preview: "/hero/ay-cay-tea-garden-preview.mp4", media: 0 },
+  { slug: "aksu-emlak", preview: "/hero/aksu-villa-preview.mp4", media: 0 },
+  { slug: "the-vera-cafe-restaurant", preview: "/hero/vera-dessert-preview.mp4", media: 11 },
+  { slug: "gul-mar", preview: "/hero/gul-mar-location-preview.mp4", media: 0 },
+  { slug: "fora-doner-burger-pizza", preview: "/hero/fora-burger-preview.mp4", media: 0 },
+  { slug: "modatepe-resort", preview: "/hero/modatepe-resort-preview.mp4", media: 0 },
+  { slug: "pesent-restaurant", preview: "/hero/pesent-grill-preview.mp4", media: 1 },
+  { slug: "ozen-optik", preview: "/hero/ozen-products-preview.mp4", media: 1 },
+].map(({ slug, preview, media }) => {
+  const project = portfolioProjectBySlug[slug];
+  return {
+    name: project.name,
+    category: project.category.split("·")[0].trim(),
+    preview,
+    poster: preview.replace(/\.mp4$/, ".webp"),
+    src: project.media[media].src,
+    projectHref: `/portfolyo/${slug}`,
+  };
+});
 
 const TICKER = [
   { t: "Sosyal Medya", o: false },
@@ -84,19 +95,10 @@ const TRUSTED_PROJECTS = TRUSTED_SLUGS.map(
 
 export default function Home() {
   const whatsappUrl = getWhatsAppUrl();
-  const reducedMotion = useReducedMotion();
   const playIntro = useRef(!introWasShown).current;
   useEffect(() => {
     introWasShown = true;
   }, []);
-  const titleLine = {
-    hidden: { opacity: reducedMotion ? 1 : 0, y: reducedMotion ? 0 : 24 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { type: "spring", stiffness: 90, damping: 18, mass: 0.9 },
-    },
-  };
 
   return (
     <main>
@@ -105,26 +107,8 @@ export default function Home() {
         description="White Media; sosyal medya yönetimi, fotoğraf ve video prodüksiyon, drone çekimi, dijital reklam ve web hizmetleri sunan Trabzon merkezli dijital ajans."
         path="/"
       />
-      <AnimatedMarqueeHero
-        playIntro={playIntro}
-        title={
-          <>
-            <motion.span variants={titleLine} className="inline-block">
-              İzlenen içerikten
-            </motion.span>
-            <br />
-            <motion.span variants={titleLine} className="inline-block">
-              tercih edilen markaya.
-            </motion.span>
-          </>
-        }
-        description="Sosyal medya yönetimi, prodüksiyon ve dijital reklamı tek ekipte yürütüyor; markana tutarlı, güçlü ve hatırlanan bir dijital görünüm kuruyoruz."
-        ctaText="WhatsApp'tan yaz"
-        ctaHref={whatsappUrl}
-        secondaryCtaText="İşleri incele"
-        secondaryCtaHref="/portfolyo"
-        videos={SHOWCASE_VIDEOS}
-      />
+      <CinematicHero playIntro={playIntro} whatsappUrl={whatsappUrl} />
+      <VideoShowcase videos={SHOWCASE_VIDEOS} />
 
       {/* TRUST */}
       <section className="client-proof" id="secili-isler" aria-labelledby="client-proof-title">

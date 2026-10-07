@@ -191,6 +191,42 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
+    index: "29",
+    slug: "fora-doner-burger-pizza",
+    name: "Fora Döner Burger Pizza",
+    category: "Restoran · Sosyal Medya İçeriği",
+    summary:
+      "Fora'nın burger, döner ve pizza çeşitlerini; mutfak hazırlığı, ürün detayları ve mekân atmosferini buluşturan dinamik dikey videolarla anlattık.",
+    services: ["Yeme içme prodüksiyonu", "Reels çekimi", "Kurgu & renk"],
+    logo: "/logos/fora-doner-burger-pizza.svg",
+    logoAlt: "Fora Döner Burger Pizza logosu",
+    logoShape: "wide",
+    logoTreatment: "light",
+    panel: "dark",
+    media: [
+      {
+        src: "/work/fora-doner-burger-pizza/burger-hazirligi.mp4",
+        poster: "/work/fora-doner-burger-pizza/burger-hazirligi.webp",
+        title: "Fora burger hazırlığı ve sunumu",
+      },
+      {
+        src: "/work/fora-doner-burger-pizza/doner-tabagi-sunumu.mp4",
+        poster: "/work/fora-doner-burger-pizza/doner-tabagi-sunumu.webp",
+        title: "Fora döner tabağı hazırlığı ve sunumu",
+      },
+      {
+        src: "/work/fora-doner-burger-pizza/mekan-ve-lezzet-tanitimi.mp4",
+        poster: "/work/fora-doner-burger-pizza/mekan-ve-lezzet-tanitimi.webp",
+        title: "Fora mekân ve lezzet tanıtımı",
+      },
+      {
+        src: "/work/fora-doner-burger-pizza/pizza-hazirligi.mp4",
+        poster: "/work/fora-doner-burger-pizza/pizza-hazirligi.webp",
+        title: "Fora pizza hazırlığı ve sunumu",
+      },
+    ],
+  },
+  {
     index: "23",
     slug: "genc-musiad-trabzon",
     name: "Genç MÜSİAD Trabzon",
@@ -1015,6 +1051,10 @@ export const portfolioProjectNotes: Record<string, { headline: string; detail: s
     headline: "Uzman anlatımını güçlü bir akışa dönüştürdük.",
     detail: "Bebeklerde boğmaca konusunu ele alan anlatımı; vaka görüntüleri, kaynak ekranları, vurgu metinleri ve tempolu geçişlerle dikey bir bilgilendirme videosunda kurguladık.",
   },
+  "fora-doner-burger-pizza": {
+    headline: "Üç lezzet, dört dinamik içerik.",
+    detail: "Burger ve pizza hazırlığını yakın plan mutfak görüntüleriyle; döner sunumunu ürün deneyimiyle, markanın mekânını ise lezzet detaylarıyla bir araya getiren ayrı dikey videolarda anlattık.",
+  },
   "genc-musiad-trabzon": {
     headline: "Etkinliğin öne çıkan anları.",
     detail: "Konuşmaları, katılımcıları ve ödül anlarını tek bir etkinlik filminde buluşturduk.",
@@ -1096,3 +1136,4 @@ export const portfolioProjectNotes: Record<string, { headline: string; detail: s
 export const portfolioProjectBySlug = Object.fromEntries(
   portfolioProjects.map((project) => [project.slug, project])
 ) as Record<string, PortfolioProject>;
+

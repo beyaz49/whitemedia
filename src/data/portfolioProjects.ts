@@ -32,13 +32,13 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     index: "31",
     slug: "erdem-sanli",
-    name: "Erdem Şanlı — Samsung Galaxy",
-    category: "Teknoloji · Reklam Prodüksiyonu",
+    name: "Erdem Şanlı",
+    category: "Fotoğraf · Reklam İş Birliği",
     summary:
-      "Oyuncu Erdem Şanlı ile Samsung Galaxy için telefon reklamı ve kampanya fotoğrafları hazırladık. Ürünü öne çıkaran video ve portre çekimlerini aynı kampanyada bir araya getirdik.",
-    services: ["Reklam filmi çekimi", "Kampanya fotoğraf çekimi", "Kurgu & renk"],
+      "Oyuncu Erdem Şanlı'nın kişisel post fotoğraf çekimini ve Samsung reklam iş birliği için içerik üretimini gerçekleştirdik. İki ayrı çalışmayı, kendi Instagram hesabındaki paylaşımlarda inceleyebilirsin.",
+    services: ["Kişisel post fotoğraf çekimi", "Reklam iş birliği çekimi", "Kurgu & renk"],
     logo: "/logos/erdem-sanli-campaign.svg",
-    logoAlt: "Erdem Şanlı — Samsung Galaxy kampanya başlığı",
+    logoAlt: "Erdem Şanlı — Fotoğraf ve reklam iş birliği",
     logoShape: "wide",
     logoTreatment: "light",
     panel: "dark",
@@ -46,15 +46,15 @@ export const portfolioProjects: PortfolioProject[] = [
       {
         type: "instagram",
         src: "https://www.instagram.com/erdemsanlii/p/DXfOiAqDayn/",
-        poster: "/work/erdem-sanli/samsung-galaxy-reklam-filmi.webp",
-        title: "Samsung Galaxy — Reklam videosu",
+        poster: "/work/erdem-sanli/erdem-sanli-kisisel-post.jpg",
+        title: "Erdem Şanlı — Kişisel post çekimi",
         instagramUsername: "erdemsanlii",
       },
       {
         type: "instagram",
         src: "https://www.instagram.com/erdemsanlii/p/DYFI8xSjGiA/",
         poster: "/work/erdem-sanli/samsung-galaxy-post-01.jpg",
-        title: "Samsung Galaxy — Kampanya fotoğrafları",
+        title: "Samsung — Reklam iş birliği",
         instagramUsername: "erdemsanlii",
       },
     ],
@@ -1082,8 +1082,8 @@ export const portfolioProjects: PortfolioProject[] = [
 // They do not imply campaign results or client briefs we cannot verify.
 export const portfolioProjectNotes: Record<string, { headline: string; detail: string }> = {
   "erdem-sanli": {
-    headline: "Reklam filmi ve fotoğraflarla tek bir kampanya.",
-    detail: "Samsung Galaxy telefon reklamını Erdem Şanlı ile çektik. Reklam videosu ve kampanya fotoğraflarını, Erdem Şanlı'nın kendi hesabında paylaştığı iki Instagram gönderisi üzerinden inceleyebilirsin.",
+    headline: "İki farklı çekim, iki ayrı paylaşım.",
+    detail: "Erdem Şanlı'nın kişisel post fotoğraf çekimini ve Samsung reklam iş birliğini iki ayrı çalışma olarak hazırladık. Her iki gönderiyi de Erdem Şanlı'nın kendi Instagram hesabında inceleyebilirsin.",
   },
   medicalpark: {
     headline: "Kurum ve uzman anlatımı.",

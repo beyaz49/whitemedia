@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowLeftRight, ArrowRight, ArrowUpRight, Pause, Play, X } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -18,7 +18,7 @@ export type ShowcaseVideo = {
 const DWELL_MS = 8000;
 const MANUAL_DWELL_MS = 15000;
 
-function Preview({ video, playing }: { video: ShowcaseVideo; playing: boolean }) {
+const Preview = memo(function Preview({ video, playing }: { video: ShowcaseVideo; playing: boolean }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [loaded, setLoaded] = useState(false);
   const visible = useMediaActivity(ref);
@@ -33,7 +33,7 @@ function Preview({ video, playing }: { video: ShowcaseVideo; playing: boolean })
   }, [playing, visible, loaded]);
 
   return <video ref={ref} src={loaded ? video.preview : undefined} poster={video.poster} muted loop playsInline preload="none" aria-hidden="true" />;
-}
+});
 
 export default function VideoShowcase({ videos }: { videos: readonly ShowcaseVideo[] }) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -67,12 +67,13 @@ export default function VideoShowcase({ videos }: { videos: readonly ShowcaseVid
   useEffect(() => {
     if (!embla) return;
     const select = () => setSelected(embla.selectedScrollSnap());
-    const scroll = () => setSettled(false);
-    const settle = () => setSettled(true);
+    let moving = false;
+    const scroll = () => { if (!moving) { moving = true; setSettled(false); } };
+    const settle = () => { moving = false; setSettled(true); };
     const down = () => { setDragging(true); manualInteraction(); };
     const up = () => { setDragging(false); manualInteraction(); };
     const focus = () => { setFocused(true); manualInteraction(); };
-    const reInit = () => { select(); setSettled(true); };
+    const reInit = () => { moving = false; select(); setSettled(true); };
     select();
     embla.on("select", select).on("scroll", scroll).on("settle", settle)
       .on("pointerDown", down).on("pointerUp", up).on("slideFocus", focus).on("reInit", reInit);

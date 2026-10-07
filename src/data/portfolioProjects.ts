@@ -35,7 +35,7 @@ export const portfolioProjects: PortfolioProject[] = [
     name: "Erdem Şanlı",
     category: "Fotoğraf · Reklam İş Birliği",
     summary:
-      "Oyuncu Erdem Şanlı'nın kişisel post fotoğraf çekimini ve Samsung reklam iş birliği için içerik üretimini gerçekleştirdik. İki ayrı çalışmayı, kendi Instagram hesabındaki paylaşımlarda inceleyebilirsin.",
+      "Oyuncu Erdem Şanlı'nın kişisel post fotoğraf çekimini ve Samsung reklam iş birliği için içerik üretimini gerçekleştirdik. İki ayrı çalışmayı, kendi Instagram hesabındaki paylaşımlarda inceleyebilirsiniz.",
     services: ["Kişisel post fotoğraf çekimi", "Reklam iş birliği çekimi", "Kurgu & renk"],
     logo: "/logos/erdem-sanli-campaign.svg",
     logoAlt: "Erdem Şanlı — Fotoğraf ve reklam iş birliği",
@@ -1083,7 +1083,7 @@ export const portfolioProjects: PortfolioProject[] = [
 export const portfolioProjectNotes: Record<string, { headline: string; detail: string }> = {
   "erdem-sanli": {
     headline: "İki farklı çekim, iki ayrı paylaşım.",
-    detail: "Erdem Şanlı'nın kişisel post fotoğraf çekimini ve Samsung reklam iş birliğini iki ayrı çalışma olarak hazırladık. Her iki gönderiyi de Erdem Şanlı'nın kendi Instagram hesabında inceleyebilirsin.",
+    detail: "Erdem Şanlı'nın kişisel post fotoğraf çekimini ve Samsung reklam iş birliğini iki ayrı çalışma olarak hazırladık. Her iki gönderiyi de Erdem Şanlı'nın kendi Instagram hesabında inceleyebilirsiniz.",
   },
   medicalpark: {
     headline: "Kurum ve uzman anlatımı.",

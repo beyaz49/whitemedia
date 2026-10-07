@@ -26,7 +26,7 @@ const SHOWCASE_VIDEOS = [
   {"slug": "gursoy-insaat", "preview": "/hero/gursoy-showcase.mp4", "media": 2},
   {"slug": "maziden-atiye-puruthana", "preview": "/hero/curated-craft.mp4", "media": 2},
   {"slug": "modatepe-resort", "preview": "/hero/curated-breakfast.mp4", "media": 4},
-  {"slug": "kardesler-oto-lastik", "preview": "/hero/curated-wheel-renewal.mp4", "media": 1},
+  {"slug": "kardesler-oto-lastik", "preview": "/work/kardesler-beyazli/kardesler-beyazli-34.mp4", "media": 4},
   {"slug": "the-vera-cafe-restaurant", "preview": "/hero/vera-dessert-preview.mp4", "media": 11},
   {"slug": "genc-musiad-trabzon", "preview": "/hero/curated-event.mp4", "media": 0},
   {"slug": "faber-gayrimenkul", "preview": "/hero/curated-sea-residence.mp4", "media": 4},

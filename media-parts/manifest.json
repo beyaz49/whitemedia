@@ -546,5 +546,30 @@
       "media-parts/fora-doner-burger-pizza/pizza-hazirligi.mp4.part-054",
       "media-parts/fora-doner-burger-pizza/pizza-hazirligi.mp4.part-055"
     ]
+  },
+  {
+    "target": "public/work/ay-cay/ay-cay-urun-kampanyasi.mp4",
+    "size": 3311932,
+    "sha256": "ab52adce3289f2684e7b2ba02387e9b009f116dc7961d1c2a78139c7a32fb7f5",
+    "parts": [
+      "media-parts/ay-cay/ay-cay-urun-kampanyasi.mp4.part-000",
+      "media-parts/ay-cay/ay-cay-urun-kampanyasi.mp4.part-001",
+      "media-parts/ay-cay/ay-cay-urun-kampanyasi.mp4.part-002",
+      "media-parts/ay-cay/ay-cay-urun-kampanyasi.mp4.part-003",
+      "media-parts/ay-cay/ay-cay-urun-kampanyasi.mp4.part-004",
+      "media-parts/ay-cay/ay-cay-urun-kampanyasi.mp4.part-005"
+    ]
+  },
+  {
+    "target": "public/work/ay-cay/ilk-hasat-hediye-kampanyasi.mp4",
+    "size": 2826109,
+    "sha256": "2cceb3f5b83d8530326cc92ae17b6851c93801d705a2b055f2c075cce35702fe",
+    "parts": [
+      "media-parts/ay-cay/ilk-hasat-hediye-kampanyasi.mp4.part-000",
+      "media-parts/ay-cay/ilk-hasat-hediye-kampanyasi.mp4.part-001",
+      "media-parts/ay-cay/ilk-hasat-hediye-kampanyasi.mp4.part-002",
+      "media-parts/ay-cay/ilk-hasat-hediye-kampanyasi.mp4.part-003",
+      "media-parts/ay-cay/ilk-hasat-hediye-kampanyasi.mp4.part-004"
+    ]
   }
 ]

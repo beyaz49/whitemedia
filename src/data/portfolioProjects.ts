@@ -227,6 +227,32 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
+    index: "30",
+    slug: "ay-cay",
+    name: "Ay Çay",
+    category: "Çay · Kampanya İçeriği",
+    summary:
+      "Ay Çay'ın ürünlerini ve İlk Hasat kampanyasını, Rize'nin çay bahçelerinde sunucu anlatımı ve ürün odaklı dikey videolarla anlattık.",
+    services: ["Reels prodüksiyonu", "Ürün & kampanya çekimi", "Kurgu & altyazı"],
+    logo: "/logos/ay-cay.webp",
+    logoAlt: "Ay Çay logosu",
+    logoShape: "square",
+    logoTreatment: "light",
+    panel: "dark",
+    media: [
+      {
+        src: "/work/ay-cay/ay-cay-urun-kampanyasi.mp4",
+        poster: "/work/ay-cay/ay-cay-urun-kampanyasi.webp",
+        title: "Ay Çay ürün kampanyası",
+      },
+      {
+        src: "/work/ay-cay/ilk-hasat-hediye-kampanyasi.mp4",
+        poster: "/work/ay-cay/ilk-hasat-hediye-kampanyasi.webp",
+        title: "Ay Çay İlk Hasat hediye kampanyası",
+      },
+    ],
+  },
+  {
     index: "23",
     slug: "genc-musiad-trabzon",
     name: "Genç MÜSİAD Trabzon",
@@ -1054,6 +1080,10 @@ export const portfolioProjectNotes: Record<string, { headline: string; detail: s
   "fora-doner-burger-pizza": {
     headline: "Üç lezzet, dört dinamik içerik.",
     detail: "Burger ve pizza hazırlığını yakın plan mutfak görüntüleriyle; döner sunumunu ürün deneyimiyle, markanın mekânını ise lezzet detaylarıyla bir araya getiren ayrı dikey videolarda anlattık.",
+  },
+  "ay-cay": {
+    headline: "Çayı kaynağında anlattık.",
+    detail: "Ay Çay'ın ürün kampanyasını ve İlk Hasat hediyesini, Rize'nin çay bahçelerinde sunucu anlatımı ve ürün planlarıyla iki ayrı dikey içerikte sunduk.",
   },
   "genc-musiad-trabzon": {
     headline: "Etkinliğin öne çıkan anları.",

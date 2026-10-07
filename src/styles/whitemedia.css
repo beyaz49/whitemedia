@@ -1390,6 +1390,11 @@ a {
   background: #0a0a0a;
 }
 
+.brand-panel--white {
+  color: var(--ink);
+  background: #fff;
+}
+
 .exhibit__media .brand-logo {
   display: block;
   width: 360px;
@@ -1409,6 +1414,10 @@ a {
 
 .brand-logo--light {
   filter: grayscale(1) brightness(0) invert(1) contrast(1.15);
+}
+
+.brand-logo--color {
+  filter: none;
 }
 
 .brand-logo--grayscale {
@@ -2142,6 +2151,11 @@ a {
 .case-logo--light {
   color: var(--paper);
   background: var(--ink);
+}
+
+.case-logo--white {
+  color: var(--ink);
+  background: #fff;
 }
 
 .case-logo__mark {

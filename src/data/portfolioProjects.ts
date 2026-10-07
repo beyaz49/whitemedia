@@ -15,8 +15,8 @@ export type PortfolioProject = {
   logo?: string;
   logoAlt: string;
   logoShape: "wide" | "square";
-  logoTreatment: "dark" | "light" | "on-dark";
-  panel: "dark" | "light";
+  logoTreatment: "dark" | "light" | "on-dark" | "color";
+  panel: "dark" | "light" | "white";
   media: ProjectMedia[];
 };
 
@@ -198,11 +198,11 @@ export const portfolioProjects: PortfolioProject[] = [
     summary:
       "Fora'nın burger, döner ve pizza çeşitlerini; mutfak hazırlığı, ürün detayları ve mekân atmosferini buluşturan dinamik dikey videolarla anlattık.",
     services: ["Yeme içme prodüksiyonu", "Reels çekimi", "Kurgu & renk"],
-    logo: "/logos/fora-doner-burger-pizza.svg",
+    logo: "/logos/fora-doner-burger-pizza.webp",
     logoAlt: "Fora Döner Burger Pizza logosu",
     logoShape: "wide",
-    logoTreatment: "light",
-    panel: "dark",
+    logoTreatment: "color",
+    panel: "white",
     media: [
       {
         src: "/work/fora-doner-burger-pizza/burger-hazirligi.mp4",

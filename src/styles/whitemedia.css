@@ -375,20 +375,12 @@ a {
 
 .hero-marquee__track {
   display: flex;
+  align-items: center;
   width: max-content;
   flex-shrink: 0;
   gap: 16px;
-  animation: heroReel 64s linear infinite;
-  will-change: transform;
-}
-
-.hero-marquee--intro .hero-marquee__track {
-  animation-delay: 1.82s;
-}
-
-@keyframes heroReel {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(calc(-50% - 8px), 0, 0); }
+  padding: 24px 0;
+  will-change: scroll-position;
 }
 
 .hero-marquee__card {
@@ -396,6 +388,27 @@ a {
   height: clamp(198px, 29svh, 274px);
   aspect-ratio: 3 / 4;
   flex: 0 0 auto;
+  border-radius: 16px;
+  opacity: .72;
+  filter: saturate(.86) contrast(.96);
+  scale: .94;
+  transform-origin: center;
+  transition:
+    scale .65s var(--ease),
+    rotate .65s var(--ease),
+    translate .65s var(--ease),
+    opacity .65s var(--ease),
+    filter .65s var(--ease),
+    box-shadow .65s var(--ease);
+  will-change: scale, opacity, filter;
+}
+
+.hero-marquee__card--active {
+  z-index: 2;
+  opacity: 1;
+  filter: none;
+  scale: 1.055;
+  box-shadow: 0 22px 50px rgba(10, 10, 10, .2);
 }
 
 .hero-marquee__card video {
@@ -3188,7 +3201,13 @@ a {
 
   .hero-marquee__track {
     animation: none !important;
-    transform: translateX(-8%);
+    transform: none;
+  }
+
+  .hero-marquee__card {
+    opacity: 1;
+    filter: none;
+    scale: 1;
   }
 
   *,

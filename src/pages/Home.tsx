@@ -17,13 +17,13 @@ import { getWhatsAppUrl } from "@/lib/whatsapp";
 let introWasShown = false;
 
 const SHOWCASE_VIDEOS = [
-  "/hero/vera-dessert-preview.mp4", // The Vera — çikolata ve ürün yakın planları
-  "/hero/katik-food-preview.mp4", // KD Katık — mutfak ve ürün prodüksiyonu
-  "/hero/gul-mar-location-preview.mp4", // Gül Mar — drone ve lokasyon grafikleri
-  "/hero/pesent-grill-preview.mp4", // Pesent — ocakbaşı ve hazırlık detayları
+  "/hero/ay-cay-tea-garden-preview.mp4", // Ay Çay — ürün, sunucu ve çay bahçesi
   "/hero/aksu-villa-preview.mp4", // Aksu — villa, drone ve iç mekân çekimleri
-  "/hero/vera-latte-preview.mp4", // The Vera — kahve hazırlığı ve sunumu
+  "/hero/vera-dessert-preview.mp4", // The Vera — çikolata ve ürün yakın planları
+  "/hero/gul-mar-location-preview.mp4", // Gül Mar — drone ve lokasyon grafikleri
+  "/hero/fora-burger-preview.mp4", // Fora — burger hazırlığı ve ürün yakın planları
   "/hero/modatepe-resort-preview.mp4", // Modatepe — şömine, tesis ve doğa
+  "/hero/pesent-grill-preview.mp4", // Pesent — ocakbaşı ve hazırlık detayları
   "/hero/ozen-products-preview.mp4", // Özen Optik — gözlük ve mağaza detayları
 ] as const;
 

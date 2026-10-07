@@ -168,7 +168,70 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
     },
   };
 
-  const duplicatedVideos = [...videos, ...videos];
+  const middleStart = videos.length;
+  const loopEnd = videos.length * 2;
+  const reelRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const [activeCard, setActiveCard] = useState(middleStart);
+  const reelVideos = [...videos, ...videos, ...videos];
+
+  useEffect(() => {
+    const reel = reelRef.current;
+    if (!reel || videos.length === 0) return;
+
+    const MOVE_MS = 650;
+    const DWELL_MS = 1000;
+    let current = middleStart;
+    let cancelled = false;
+    let advanceTimer: number | undefined;
+
+    const centerCard = (index: number, behavior: ScrollBehavior) => {
+      const card = cardRefs.current[index];
+      if (!card) return;
+
+      const left = card.offsetLeft - (reel.clientWidth - card.offsetWidth) / 2;
+      reel.scrollTo({ left, behavior });
+    };
+
+    const centerInitialCard = () => {
+      setActiveCard(middleStart);
+      centerCard(middleStart, "auto");
+    };
+
+    const initialFrame = window.requestAnimationFrame(centerInitialCard);
+
+    const advance = () => {
+      if (cancelled) return;
+
+      let next = current + 1;
+      if (next > loopEnd) {
+        // The third copy matches the middle copy exactly, so this reset is invisible.
+        centerCard(middleStart, "auto");
+        current = middleStart;
+        next = middleStart + 1;
+      }
+
+      current = next;
+      setActiveCard(current);
+      centerCard(current, "smooth");
+      advanceTimer = window.setTimeout(advance, MOVE_MS + DWELL_MS);
+    };
+
+    const handleResize = () => centerCard(current, "auto");
+    window.addEventListener("resize", handleResize);
+
+    if (!reducedMotion) {
+      const introDelay = playIntro ? 2450 : 0;
+      advanceTimer = window.setTimeout(advance, introDelay + DWELL_MS);
+    }
+
+    return () => {
+      cancelled = true;
+      window.cancelAnimationFrame(initialFrame);
+      if (advanceTimer !== undefined) window.clearTimeout(advanceTimer);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [loopEnd, middleStart, playIntro, reducedMotion, videos.length]);
 
   return (
     <section
@@ -274,20 +337,34 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
         </a>
       </div>
 
-      <div className="hero-marquee__reel" aria-hidden="true">
+      <div ref={reelRef} className="hero-marquee__reel" aria-hidden="true">
         <div className="hero-marquee__track">
-          {duplicatedVideos.map((src, index) => (
-            <div
-              key={index}
-              className="hero-marquee__card"
-              style={{
-                rotate: `${CARD_ROTATIONS[index % CARD_ROTATIONS.length]}deg`,
-                translate: `0 ${CARD_OFFSETS[index % CARD_OFFSETS.length]}px`,
-              }}
-            >
-              <MarqueeVideo src={src} position={index % videos.length} />
-            </div>
-          ))}
+          {reelVideos.map((src, index) => {
+            const isActive = index === activeCard;
+
+            return (
+              <div
+                ref={(node) => {
+                  cardRefs.current[index] = node;
+                }}
+                key={`${src}-${index}`}
+                className={cn(
+                  "hero-marquee__card",
+                  isActive && "hero-marquee__card--active"
+                )}
+                style={{
+                  rotate: isActive
+                    ? "0deg"
+                    : `${CARD_ROTATIONS[index % CARD_ROTATIONS.length]}deg`,
+                  translate: isActive
+                    ? "0 0"
+                    : `0 ${CARD_OFFSETS[index % CARD_OFFSETS.length]}px`,
+                }}
+              >
+                <MarqueeVideo src={src} position={index % videos.length} />
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

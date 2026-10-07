@@ -1,5 +1,5 @@
 /* Cinematic opening; the portrait work remains intact in the draggable gallery. */
-.nav--cinematic {
+.nav.nav--cinematic, .nav.nav--cinematic.scrolled {
   background: rgba(10, 10, 10, .96);
   color: #fff;
   border-bottom-color: rgba(255, 255, 255, .12);
@@ -66,10 +66,11 @@
   color: rgba(255, 255, 255, .8);
 }
 .cinematic-hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
-.cinematic-hero__cta { background: #fff; color: #0a0a0a; border-color: #fff; padding: 16px 26px; }
-.cinematic-hero__cta::before { background: #e7e7e7; }
-.cinematic-hero__cta--outline { background: rgba(0, 0, 0, .13); color: #fff; border-color: rgba(255, 255, 255, .7); }
-.cinematic-hero__cta--outline::before { background: #fff; }
+.cinematic-hero .cinematic-hero__cta { background: #fff; color: #0a0a0a; border-color: #fff; padding: 16px 26px; }
+.cinematic-hero .cinematic-hero__cta::before { background: #e7e7e7; }
+.cinematic-hero .cinematic-hero__cta--outline { background: rgba(0, 0, 0, .13); color: #fff; border-color: rgba(255, 255, 255, .7); }
+.cinematic-hero .cinematic-hero__cta--outline::before { background: #fff; }
+.cinematic-hero .cinematic-hero__cta:hover { color: #0a0a0a; }
 .cinematic-hero__footer { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
 .cinematic-hero__discover { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
 .cinematic-hero__playback {
@@ -178,7 +179,7 @@
   .cinematic-hero h1 { max-width: 360px; font-size: clamp(43px, 10.5vw, 62px); }
   .cinematic-hero__lead { margin-top: 13px; font-size: 17px; }
   .cinematic-hero__actions { gap: 9px; margin-top: 25px; }
-  .cinematic-hero__cta { font-size: 10px; padding: 14px 16px; gap: 6px; }
+  .cinematic-hero .cinematic-hero__cta { font-size: 10px; padding: 14px 16px; gap: 6px; }
   .cinematic-hero__footer { gap: 8px; }
   .cinematic-hero__discover { font-size: 8px; letter-spacing: .06em; }
   .cinematic-hero__playback { gap: 8px; font-size: 8px; letter-spacing: .03em; }

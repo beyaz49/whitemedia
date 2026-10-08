@@ -44,6 +44,13 @@ export const portfolioProjects: PortfolioProject[] = [
     panel: "dark",
     media: [
       {
+        type: "video",
+        src: "/work/erdem-sanli/samsung-galaxy-reklam-filmi.mp4",
+        poster: "/work/erdem-sanli/samsung-galaxy-reklam-filmi.webp",
+        title: "Samsung — Reklam iş birliği videosu",
+        format: "portrait",
+      },
+      {
         type: "instagram",
         src: "https://www.instagram.com/erdemsanlii/p/DXfOiAqDayn/",
         poster: "/work/erdem-sanli/erdem-sanli-kisisel-post.jpg",

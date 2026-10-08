@@ -21,6 +21,7 @@ const SHOWCASE_VIDEOS = [
   {"slug": "medicalpark", "preview": "/hero/curated-doctor-interview.mp4", "media": 1},
   {"slug": "sancak-turizm", "preview": "/hero/curated-uzungol.mp4", "media": 0},
   {"slug": "pesent-restaurant", "preview": "/hero/curated-pide.mp4", "media": 3},
+  {"slug": "erdem-sanli", "preview": "/work/erdem-sanli/samsung-galaxy-reklam-preview.mp4", "poster": "/work/erdem-sanli/samsung-galaxy-reklam-filmi.webp", "media": 0},
   {"slug": "dk-gayrimenkul", "preview": "/hero/dk-showcase.mp4", "media": 0},
   {"slug": "kozalaklar-oyun-atolyesi", "preview": "/hero/curated-snow.mp4", "media": 2},
   {"slug": "gursoy-insaat", "preview": "/hero/gursoy-showcase.mp4", "media": 2},
@@ -30,14 +31,14 @@ const SHOWCASE_VIDEOS = [
   {"slug": "the-vera-cafe-restaurant", "preview": "/hero/vera-dessert-preview.mp4", "media": 11},
   {"slug": "genc-musiad-trabzon", "preview": "/hero/curated-event.mp4", "media": 0},
   {"slug": "faber-gayrimenkul", "preview": "/hero/curated-sea-residence.mp4", "media": 4},
-].map(({ slug, preview, media }) => {
+].map(({ slug, preview, media, poster }) => {
   const project = portfolioProjectBySlug[slug];
   return {
     name: project.name,
     title: project.media[media].title,
     category: project.category.split("·")[0].trim(),
     preview,
-    poster: preview.replace(/\.mp4$/, ".webp"),
+    poster: poster ?? preview.replace(/\.mp4$/, ".webp"),
     src: project.media[media].src,
     projectHref: `/portfolyo/${slug}`,
   };

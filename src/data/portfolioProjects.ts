@@ -391,14 +391,14 @@ export const portfolioProjects: PortfolioProject[] = [
   },
   {
     index: "22",
-    slug: "meryem-surmen",
-    name: "Meryem Sürmen",
-    category: "Belgesel · Portre",
+    slug: "zirvedeki-hayatlar",
+    name: "Zirvedeki Hayatlar",
+    category: "Belgesel · Yayla Yaşamı",
     summary:
-      "Meryem Sürmen'in yaşamını ve anlatısını, Karadeniz'in yükseklerindeki gündelik hayatı ve dağ coğrafyasını buluşturan bir portre belgeseline dönüştürdük.",
+      "Meryem Sürmen'in yürüttüğü Zirvedeki Hayatlar projesi kapsamında, yaylalarda yaşayan insanların gündelik hayatlarını ve yaşam hikâyelerini belgesel diliyle anlattık.",
     services: ["Belgesel prodüksiyonu", "Röportaj & saha çekimi", "Kurgu & renk"],
-    logo: "/logos/zirvedeki-hayatlar.svg",
-    logoAlt: "Meryem Sürmen — Zirvedeki Hayatlar: Portakal Belgeseli yazı logosu",
+    logo: "/logos/zirvedeki-hayatlar.svg?v=2",
+    logoAlt: "Zirvedeki Hayatlar belgesel projesi logosu",
     logoShape: "wide",
     logoTreatment: "dark",
     panel: "dark",
@@ -1140,9 +1140,9 @@ export const portfolioProjectNotes: Record<string, { headline: string; detail: s
     headline: "Mağazadan ürün detayına.",
     detail: "Mağazanın içini, gözlük koleksiyonunu ve ürün inceleme anlarını iki ayrı dikey filmde bir araya getirdik. Kısa tanıtımı, mağaza ve ürünlere daha geniş yer veren ikinci filmle tamamladık.",
   },
-  "meryem-surmen": {
-    headline: "Zirvedeki bir yaşam hikâyesi.",
-    detail: "Meryem Sürmen'in anlatısını; portre röportajları, gündelik yaşam görüntüleri ve dağ coğrafyasını kuran planlarla tek bir belgesel filmde buluşturduk.",
+  "zirvedeki-hayatlar": {
+    headline: "Yaylalardaki yaşam hikâyeleri.",
+    detail: "Zirvedeki Hayatlar, yaylalarda yaşayan insanların hayatlarını konu alan bir belgesel projesi. Röportajları, gündelik yaşam görüntülerini ve yayla atmosferini bir araya getirerek bu hikâyeleri ekrana taşıdık.",
   },
   "aksu-emlak": {
     headline: "Trabzon’da satılık villaya özel film.",

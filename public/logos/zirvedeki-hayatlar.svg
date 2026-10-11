@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" role="img" aria-labelledby="title desc">
   <title id="title">Zirvedeki Hayatlar</title>
-  <desc id="desc">Meryem Sürmen Portakal Belgeseli için dağ simgeli yazı logosu</desc>
+  <desc id="desc">Yaylalarda yaşayan insanların hayatlarını konu alan Zirvedeki Hayatlar belgesel projesi için dağ simgeli yazı logosu</desc>
   <g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round">
     <path d="M34 214 132 86l54 67 76-103 142 164" stroke-width="15"/>
     <path d="m103 124 29-38 21 27m66-18 43-45 42 49" stroke-width="8"/>
@@ -10,6 +10,6 @@
     <text x="455" y="93" font-size="31" font-weight="700" letter-spacing="10">ZİRVEDEKİ</text>
     <text x="449" y="166" font-size="67" font-weight="900" letter-spacing="2">HAYATLAR</text>
     <path d="M454 190h441v5H454z"/>
-    <text x="455" y="235" font-size="23" font-weight="700" letter-spacing="4">MERYEM SÜRMEN · PORTAKAL</text>
+    <text x="455" y="235" font-size="23" font-weight="700" letter-spacing="4">BELGESEL PROJESİ</text>
   </g>
 </svg>

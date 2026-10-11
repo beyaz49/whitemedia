@@ -1,5 +1,5 @@
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import BrandMark from "@/components/BrandMark";
 import PageMeta from "@/components/PageMeta";
 import ProjectVideo from "@/components/ProjectVideo";
@@ -13,6 +13,11 @@ import {
 
 export default function ProjeDetay() {
   const { slug = "" } = useParams();
+
+  if (slug === "meryem-surmen") {
+    return <Navigate to="/portfolyo/zirvedeki-hayatlar" replace />;
+  }
+
   const project = portfolioProjectBySlug[slug];
 
   if (!project) {

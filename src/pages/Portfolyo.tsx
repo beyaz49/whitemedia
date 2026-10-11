@@ -39,8 +39,7 @@ export default function Portfolyo() {
               <Link
                 className={`exhibit${
                   WIDE_POSITIONS.has(position) ? " exhibit--wide" : ""
-                } reveal`}
-                data-d={position % 2 === 1 ? "1" : undefined}
+                }`}
                 key={project.slug}
                 to={`/portfolyo/${project.slug}`}
               >
@@ -75,7 +74,7 @@ export default function Portfolyo() {
           <div className="work collab-grid">
             <Link
               to="/portfolyo/erdem-sanli"
-              className="exhibit reveal collab-card"
+              className="exhibit collab-card"
             >
               <img
                 className="collab-card__image"
@@ -90,8 +89,7 @@ export default function Portfolyo() {
               href="https://instagram.com/kadmfutbol"
               target="_blank"
               rel="noreferrer"
-              className="exhibit reveal collab-card"
-              data-d="1"
+              className="exhibit collab-card"
             >
               <img
                 className="collab-card__image"

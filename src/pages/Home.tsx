@@ -129,7 +129,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="client-proof__grid reveal" data-d="1">
+          <div className="client-proof__grid">
             {TRUSTED_PROJECTS.map((project) => (
               <Link
                 className="client-proof__item client-proof__item--uniform brand-panel"
@@ -291,8 +291,7 @@ export default function Home() {
 
               return (
                 <Link
-                  className={`exhibit exhibit--story${isWide ? " exhibit--wide" : ""} reveal`}
-                  data-d={position === 2 ? "1" : undefined}
+                  className={`exhibit exhibit--story${isWide ? " exhibit--wide" : ""}`}
                   key={project.slug}
                   to={`/portfolyo/${project.slug}`}
                 >

@@ -528,8 +528,7 @@ a {
 }
 
 .client-proof__item--uniform .brand-logo--dark,
-.client-proof__item--uniform .brand-logo--light,
-.client-proof__item--uniform .brand-logo--on-dark {
+.client-proof__item--uniform .brand-logo--light {
   filter: grayscale(1) brightness(0) invert(1) contrast(1.15);
 }
 
@@ -1421,7 +1420,6 @@ a {
   object-position: center;
   overflow: visible;
   transition: transform .8s var(--ease);
-  will-change: transform;
 }
 
 .brand-logo--dark {

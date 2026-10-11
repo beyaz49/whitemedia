@@ -72,7 +72,7 @@ export default function ProjeDetay() {
             <p className="case-hero__summary reveal" data-d="2">{project.summary}</p>
           </div>
 
-          <div className={`case-logo case-logo--${project.panel} reveal`}>
+          <div className={`case-logo case-logo--${project.panel}`}>
             <BrandMark
               project={project}
               className={`case-logo__mark case-logo__mark--${project.logoShape}`}

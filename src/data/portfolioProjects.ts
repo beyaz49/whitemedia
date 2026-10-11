@@ -397,8 +397,8 @@ export const portfolioProjects: PortfolioProject[] = [
     summary:
       "Meryem Sürmen'in yürüttüğü Zirvedeki Hayatlar projesi kapsamında, yaylalarda yaşayan insanların gündelik hayatlarını ve yaşam hikâyelerini belgesel diliyle anlattık.",
     services: ["Belgesel prodüksiyonu", "Röportaj & saha çekimi", "Kurgu & renk"],
-    logo: "/logos/zirvedeki-hayatlar.svg?v=2",
-    logoAlt: "Zirvedeki Hayatlar belgesel projesi logosu",
+    logo: "/logos/zirvedeki-hayatlar.svg?v=3",
+    logoAlt: "Zirvedeki Hayatlar — Portakal belgeseli logosu",
     logoShape: "wide",
     logoTreatment: "dark",
     panel: "dark",

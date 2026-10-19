@@ -61,7 +61,7 @@
   object-fit: contain;
   pointer-events: none;
   user-select: none;
-  opacity: 0;
+  opacity: 1;
   will-change: transform, opacity;
   animation-duration: 3.2s;
   animation-timing-function: cubic-bezier(.4, 0, .2, 1);
@@ -161,13 +161,13 @@
 .camera-intro--ready .camera-intro__progress > span { animation-play-state: running; }
 
 @keyframes cameraBodyMount {
-  0% { opacity: 0; transform: translate3d(3%, 0, 0); }
+  0% { opacity: 1; transform: translate3d(3%, 0, 0); }
   12% { opacity: 1; }
   50%, 100% { opacity: 1; transform: translate3d(16.9%, 0, 0); }
 }
 
 @keyframes cameraLensMount {
-  0% { opacity: 0; transform: translate3d(4%, -1.5%, 0) rotate(-9deg); }
+  0% { opacity: 1; transform: translate3d(4%, -1.5%, 0) rotate(-9deg); }
   12% { opacity: 1; }
   43% { opacity: 1; transform: translate3d(-17.4%, 1.2%, 0) rotate(-5deg); }
   54%, 100% { opacity: 1; transform: translate3d(-17.4%, 1.2%, 0) rotate(0); }

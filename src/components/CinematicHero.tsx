@@ -1,10 +1,9 @@
 import { useEffect, useRef } from "react";
 import { ArrowDown, ArrowUpRight, Pause, Play } from "lucide-react";
 import { Link } from "react-router-dom";
-import CameraIntro from "@/components/CameraIntro";
 import { useMediaActivity, usePlaybackPreference } from "@/hooks/useMediaActivity";
 
-export default function CinematicHero({ whatsappUrl, playIntro }: { whatsappUrl: string; playIntro: boolean }) {
+export default function CinematicHero({ whatsappUrl }: { whatsappUrl: string }) {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const active = useMediaActivity(sectionRef);
@@ -19,7 +18,6 @@ export default function CinematicHero({ whatsappUrl, playIntro }: { whatsappUrl:
 
   return (
     <section ref={sectionRef} className="cinematic-hero" aria-labelledby="cinematic-title">
-      {playIntro && <CameraIntro />}
       <video
         ref={videoRef}
         className="cinematic-hero__film"

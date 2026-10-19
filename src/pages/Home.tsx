@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import CinematicHero from "@/components/CinematicHero";
+import CameraIntro from "@/components/CameraIntro";
 import VideoShowcase from "@/components/VideoShowcase";
 import BrandMark from "@/components/BrandMark";
 import PageMeta from "@/components/PageMeta";
@@ -113,7 +114,8 @@ export default function Home() {
         description="White Media; sosyal medya yönetimi, fotoğraf ve video prodüksiyon, drone çekimi, dijital reklam ve web hizmetleri sunan Trabzon merkezli dijital ajans."
         path="/"
       />
-      <CinematicHero playIntro={playIntro} whatsappUrl={whatsappUrl} />
+      {playIntro && <CameraIntro />}
+      <CinematicHero whatsappUrl={whatsappUrl} />
       <VideoShowcase videos={SHOWCASE_VIDEOS} />
 
       {/* TRUST */}

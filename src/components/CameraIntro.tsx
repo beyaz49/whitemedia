@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import BrandGlyph from "@/components/BrandGlyph";
 import "@/styles/camera-intro.css";
@@ -8,8 +8,15 @@ const EMPTY_IMAGE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg
 
 /** A single photographic atlas keeps the two moving parts in the same light. */
 export default function CameraIntro() {
+  const imageRef = useRef<HTMLImageElement>(null);
   const [ready, setReady] = useState(false);
   const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    // Cached/prerendered images can finish before React attaches onLoad.
+    const image = imageRef.current;
+    if (image?.complete && image.naturalWidth > 0) setReady(true);
+  }, []);
 
   useEffect(() => {
     if (!visible) return;
@@ -61,6 +68,7 @@ export default function CameraIntro() {
           <picture>
             <source media="(prefers-reduced-motion: reduce)" srcSet={EMPTY_IMAGE} />
             <img
+              ref={imageRef}
               className="camera-intro__part camera-intro__body"
               src={CAMERA_PARTS}
               alt=""

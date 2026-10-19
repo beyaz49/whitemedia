@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { ArrowDown, ArrowUpRight, Pause, Play } from "lucide-react";
 import { Link } from "react-router-dom";
-import BrandGlyph from "@/components/BrandGlyph";
+import CameraIntro from "@/components/CameraIntro";
 import { useMediaActivity, usePlaybackPreference } from "@/hooks/useMediaActivity";
 
 export default function CinematicHero({ whatsappUrl, playIntro }: { whatsappUrl: string; playIntro: boolean }) {
@@ -19,22 +19,7 @@ export default function CinematicHero({ whatsappUrl, playIntro }: { whatsappUrl:
 
   return (
     <section ref={sectionRef} className="cinematic-hero" aria-labelledby="cinematic-title">
-      {playIntro && (
-        <div className="site-intro" aria-hidden="true">
-          <div className="site-intro__meta"><span>WM / 001</span><span>TRABZON · TÜRKİYE</span></div>
-          <div className="site-intro__center">
-            <BrandGlyph className="site-intro__glyph" />
-            <span className="site-intro__name">WHITE MEDIA</span>
-            <span className="site-intro__divider" />
-            <span className="site-intro__sub">STRATEJİ / PRODÜKSİYON / DİJİTAL</span>
-          </div>
-          <div className="site-intro__footer">
-            <span>Fikirden ekrana.</span>
-            <span className="site-intro__progress"><span /></span>
-            <span>01 / 01</span>
-          </div>
-        </div>
-      )}
+      {playIntro && <CameraIntro />}
       <video
         ref={videoRef}
         className="cinematic-hero__film"

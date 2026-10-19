@@ -30,7 +30,9 @@ async function photograph(name) {
   return {image,clip:new Path2D(d)};
 }
 const body=await photograph('body-original.jpg'), mounted=await photograph('mounted-original.jpg');
-const front=new Path2D();front.ellipse(246,299,91,109,.24,0,Math.PI*2);
+// Follow the photographed front rim itself, so no arbitrary ellipse cuts
+// through the barrel when the glass moves into the mount close-up.
+const front=new Path2D('M241 211 C295 207 340 239 343 292 C351 348 318 398 271 408 C219 422 167 391 154 344 C135 292 155 243 193 221 C207 215 225 212 241 211 Z');
 
 function render(w,h,t) {
   const canvas=createCanvas(w,h), ctx=canvas.getContext('2d'), phone=w<h;
@@ -50,7 +52,7 @@ function render(w,h,t) {
     draw(body,w*.51,h*.51,scale,[358,260],fade);
     const approach=ease((t-1.08)/1.08), lock=ease((t-2.10)/.23);
     const presence=ease((t-1.06)/.25)*fade;
-    if(presence>0) draw(mounted,w*.51+(1-approach)*w*.14,h*.51+(1-approach)*h*.065,scale*(1.24+.50*(1-approach)),[246,299],presence,-.19*(1-lock),2.5*(1-approach),front);
+    if(presence>0) draw(mounted,w*.51+(1-approach)*w*.14,h*.51+(1-approach)*h*.065,scale*(1.24+.50*(1-approach)),[246,310],presence,-.19*(1-lock),2.5*(1-approach),front);
     // Restrained moving studio flag, rather than a digital glow or interface HUD.
     const flag=ctx.createLinearGradient(0,0,w,0);flag.addColorStop(0,'#050709dd');flag.addColorStop(.40,'#05070910');flag.addColorStop(1,'#05070955');
     ctx.fillStyle=flag;ctx.fillRect(0,0,w,h);

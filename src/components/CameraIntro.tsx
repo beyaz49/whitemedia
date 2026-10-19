@@ -1,115 +1,103 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import BrandGlyph from "@/components/BrandGlyph";
+import type { CameraScene } from "@/lib/camera-scene";
 import "@/styles/camera-intro.css";
 
-const CAMERA_PARTS = "/intro/sony-a7iv-parts.webp";
-const EMPTY_IMAGE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E";
+type Phase = "loading" | "scene" | "signature" | "leaving";
+type Props = { reviewTime?: number };
 
-/** A single photographic atlas keeps the two moving parts in the same light. */
-export default function CameraIntro() {
-  const imageRef = useRef<HTMLImageElement>(null);
-  const [ready, setReady] = useState(false);
+export default function CameraIntro({ reviewTime }: Props) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const sceneRef = useRef<CameraScene>();
+  const timeRef = useRef(reviewTime);
+  timeRef.current = reviewTime;
+  const review = reviewTime !== undefined;
   const [visible, setVisible] = useState(true);
+  const [ready, setReady] = useState(false);
+  const [phase, setPhase] = useState<Phase>("loading");
 
   useEffect(() => {
-    // Cached/prerendered images can finish before React attaches onLoad.
-    const image = imageRef.current;
-    if (image?.complete && image.naturalWidth > 0) setReady(true);
-  }, []);
-
-  useEffect(() => {
-    if (!visible) return;
+    const canvas = canvasRef.current;
+    if (!canvas || !visible) return;
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-    const dismiss = () => setVisible(false);
-    if (motion.matches || connection?.saveData) {
-      dismiss();
-      return;
+    if (!review && (motion.matches || connection?.saveData)) { setVisible(false); return; }
+    let cancelled = false;
+    const dismiss = () => { if (!review) setVisible(false); };
+    const onKey = (event: KeyboardEvent) => { if (event.key === "Escape") dismiss(); };
+    const contextLost = () => { if (!review) { setReady(true); setPhase("signature"); } };
+    if (!review) {
+      document.documentElement.dataset.introActive = "true";
+      window.dispatchEvent(new Event("wm:intro"));
     }
-
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") dismiss();
-    };
-    // A failed or slow image must never hold the visitor behind the opening.
-    const fallback = window.setTimeout(dismiss, 4000);
     window.addEventListener("keydown", onKey);
     motion.addEventListener("change", dismiss);
+    canvas.addEventListener("webglcontextlost", contextLost);
+    const loading = window.setTimeout(() => { if (!review) { setReady(true); setPhase("signature"); } }, 3500);
+    const maximum = window.setTimeout(dismiss, 8500);
+
+    void import("@/lib/camera-scene").then(({ createCameraScene }) => {
+      if (cancelled) return;
+      return createCameraScene(canvas, {
+        reviewTime: timeRef.current,
+        onSignature: () => { if (!cancelled) setPhase("signature"); },
+        onFinish: () => { if (!cancelled) setPhase("leaving"); },
+      });
+    }).then(scene => {
+      if (!scene) return;
+      if (cancelled) { scene.dispose(); return; }
+      sceneRef.current = scene;
+      window.clearTimeout(loading);
+      setReady(true); setPhase("scene");
+      if (timeRef.current !== undefined) scene.setTime(timeRef.current);
+    }).catch(() => {
+      if (!cancelled) { setReady(true); setPhase("signature"); }
+    });
+
     return () => {
-      window.clearTimeout(fallback);
-      window.removeEventListener("keydown", onKey);
-      motion.removeEventListener("change", dismiss);
+      cancelled = true;
+      window.clearTimeout(loading); window.clearTimeout(maximum);
+      sceneRef.current?.dispose(); sceneRef.current = undefined;
+      canvas.removeEventListener("webglcontextlost", contextLost);
+      window.removeEventListener("keydown", onKey); motion.removeEventListener("change", dismiss);
+      if (!review) {
+        delete document.documentElement.dataset.introActive;
+        window.dispatchEvent(new Event("wm:intro"));
+      }
     };
-  }, [visible]);
+  }, [visible, review]);
 
   useEffect(() => {
-    if (!ready || !visible) return;
-    const finish = window.setTimeout(() => setVisible(false), 3220);
-    return () => window.clearTimeout(finish);
-  }, [ready, visible]);
+    if (reviewTime !== undefined) sceneRef.current?.setTime(reviewTime);
+  }, [reviewTime]);
+
+  useEffect(() => {
+    if (review || (phase !== "leaving" && phase !== "signature")) return;
+    const fallback = window.setTimeout(() => {
+      if (phase === "signature") setPhase("leaving");
+      else setVisible(false);
+    }, phase === "signature" ? 1250 : 480);
+    return () => window.clearTimeout(fallback);
+  }, [phase, review]);
 
   if (!visible) return null;
+  const shownPhase = review && ready ? (reviewTime >= 3.6 ? "signature" : "scene") : phase;
 
   return (
-    <div
-      className={`camera-intro${ready ? " camera-intro--ready" : ""}`}
-      onAnimationEnd={(event) => {
-        if (event.target === event.currentTarget) setVisible(false);
-      }}
-    >
-      <div className="camera-intro__meta" aria-hidden="true">
-        <span>WHITE MEDIA / PRODÜKSİYON</span>
-        <span>TRABZON · TÜRKİYE</span>
+    <div className={`camera-intro camera-intro--${shownPhase}${ready ? " camera-intro--ready" : ""}${review ? " camera-intro--review" : ""}`}>
+      <canvas ref={canvasRef} className="camera-intro__canvas" aria-hidden="true" />
+      <div className="camera-intro__shade" aria-hidden="true" />
+      <div className="camera-intro__header" aria-hidden="true">
+        <BrandGlyph className="camera-intro__header-glyph" /><span>White Media</span>
       </div>
-
-      <div className="camera-intro__center" aria-hidden="true">
-        <div className="camera-intro__stage">
-          <div className="camera-intro__light" />
-          <picture>
-            <source media="(prefers-reduced-motion: reduce)" srcSet={EMPTY_IMAGE} />
-            <img
-              ref={imageRef}
-              className="camera-intro__part camera-intro__body"
-              src={CAMERA_PARTS}
-              alt=""
-              width="1672"
-              height="941"
-              fetchPriority="high"
-              decoding="async"
-              draggable={false}
-              onLoad={() => setReady(true)}
-              onError={() => setVisible(false)}
-            />
-          </picture>
-          <picture>
-            <source media="(prefers-reduced-motion: reduce)" srcSet={EMPTY_IMAGE} />
-            <img
-              className="camera-intro__part camera-intro__lens"
-              src={CAMERA_PARTS}
-              alt=""
-              width="1672"
-              height="941"
-              decoding="async"
-              draggable={false}
-              onError={() => setVisible(false)}
-            />
-          </picture>
-        </div>
-
-        <div className="camera-intro__brand">
-          <BrandGlyph className="camera-intro__glyph" />
-          <span className="camera-intro__name">WHITE MEDIA</span>
-          <span className="camera-intro__tagline">Fikirden ekrana.</span>
-        </div>
+      <div className="camera-intro__signature" aria-hidden="true">
+        <div className="camera-intro__wordmark"><BrandGlyph className="camera-intro__glyph" /><span>White Media</span></div>
+        <p>Fikirden ekrana.</p>
       </div>
-
-      <div className="camera-intro__footer">
-        <span className="camera-intro__caption" aria-hidden="true">STRATEJİ / PRODÜKSİYON / DİJİTAL</span>
-        <span className="camera-intro__progress" aria-hidden="true"><span /></span>
-        <button className="camera-intro__skip" type="button" onClick={() => setVisible(false)}>
-          Girişi geç <ArrowUpRight size={14} aria-hidden="true" />
-        </button>
-      </div>
+      {!review && <button className="camera-intro__skip" type="button" onClick={() => setVisible(false)}>
+        Girişi geç <ArrowUpRight size={14} aria-hidden="true" />
+      </button>}
     </div>
   );
 }

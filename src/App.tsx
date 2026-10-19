@@ -11,7 +11,6 @@ import Portfolyo from "@/pages/Portfolyo";
 import ProjeDetay from "@/pages/ProjeDetay";
 import Iletisim from "@/pages/Iletisim";
 import NotFound from "@/pages/NotFound";
-import CameraReview from "@/pages/CameraReview";
 
 function Layout() {
   usePageEffects();
@@ -28,7 +27,6 @@ function Layout() {
 export default function App() {
   return (
     <Routes>
-      <Route path="/_camera-review" element={<CameraReview />} />
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/hakkimizda" element={<Hakkimizda />} />

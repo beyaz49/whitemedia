@@ -1,19 +1,8 @@
 import * as T from "three";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 
-type SceneOptions = {
-  reviewTime?: number;
-  onSignature: () => void;
-  onFinish: () => void;
-};
-export type CameraScene = { setTime: (seconds: number) => void; dispose: () => void };
-
-const DURATION = 4.8;
-const clamp = T.MathUtils.clamp;
-const ease = (value: number) => { const t = clamp(value, 0, 1); return t * t * (3 - 2 * t); };
-
 /** Original, dimensioned camera geometry. The optical axis is +Z throughout. */
-function buildCamera() {
+export function buildCamera() {
   const root = new T.Group();
   const body = new T.Group();
   const lens = new T.Group();
@@ -76,7 +65,7 @@ function buildCamera() {
     canvas.width = 1024; canvas.height = 256;
     const ctx = canvas.getContext("2d")!;
     ctx.fillStyle = "#d9dcdd";
-    ctx.font = font;
+    ctx.font = font.replace(/(\d+)px/, (_, size: string) => `${Math.min(220, Number(size) * 2.5)}px`);
     ctx.textAlign = "center"; ctx.textBaseline = "middle";
     ctx.fillText(text, 512, 128, 950);
     const texture = new T.CanvasTexture(canvas);
@@ -268,107 +257,4 @@ function buildCamera() {
   mesh(lens, new T.PlaneGeometry(6.9, 6.9), new T.MeshBasicMaterial({ map: legendMap, transparent: true, depthWrite: false, toneMapped: false }), 0, 0, 8.18).castShadow = false;
 
   return { root, lens, iris, textures };
-}
-
-export async function createCameraScene(canvas: HTMLCanvasElement, options: SceneOptions): Promise<CameraScene> {
-  const renderer = new T.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: "high-performance" });
-  renderer.outputColorSpace = T.SRGBColorSpace;
-  renderer.toneMapping = T.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.12;
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = T.PCFSoftShadowMap;
-  const scene = new T.Scene(); scene.background = new T.Color(0x080a0c);
-  scene.fog = new T.FogExp2(0x080a0c, .011);
-  const camera = new T.PerspectiveCamera(30, 1, .5, 220);
-  const environment = new T.Scene(); environment.background = new T.Color(0x202225);
-  function softbox(w: number, h: number, at: [number, number, number], power: number) {
-    const panel = new T.Mesh(new T.PlaneGeometry(w, h), new T.MeshBasicMaterial({ color: new T.Color().setRGB(power, power, power), side: T.DoubleSide }));
-    panel.position.set(...at); panel.lookAt(0, 0, 0); environment.add(panel);
-  }
-  softbox(13, 7, [-9, 15, 10], 5.0);
-  softbox(2.0, 17, [14, 7, 4], 5.0);
-  softbox(2.0, 15, [-14, 6, -8], 6.0);
-  softbox(13, 3, [0, 12, -10], 3.5);
-  softbox(12, 5, [-4, 0, 19], .9);
-  const pmrem = new T.PMREMGenerator(renderer);
-  const environmentTarget = pmrem.fromScene(environment, .04, .1, 80);
-  scene.environment = environmentTarget.texture;
-  scene.environmentIntensity = .86;
-  environment.traverse(object => { if (object instanceof T.Mesh) { object.geometry.dispose(); (object.material as T.Material).dispose(); } });
-  pmrem.dispose();
-
-  const built = buildCamera(); scene.add(built.root);
-  const floor = new T.Mesh(new T.PlaneGeometry(180, 180), new T.MeshStandardMaterial({ color: 0x101315, roughness: .43, metalness: .38 }));
-  floor.rotation.x = -Math.PI / 2; floor.position.y = -4.03; floor.receiveShadow = true; scene.add(floor);
-  const key = new T.DirectionalLight(0xf1f3f4, 3.1); key.position.set(-11, 16, 14); key.castShadow = true;
-  key.shadow.mapSize.set(1024, 1024); key.shadow.camera.left = -22; key.shadow.camera.right = 22;
-  key.shadow.camera.top = 22; key.shadow.camera.bottom = -22; key.shadow.camera.near = 1; key.shadow.camera.far = 75;
-  key.shadow.bias = -.0004; key.shadow.normalBias = .025; key.shadow.radius = 4; scene.add(key);
-  const rim = new T.DirectionalLight(0xd8e0e6, 2.0); rim.position.set(13, 8, -9); scene.add(rim);
-  const fill = new T.DirectionalLight(0xe5e7e8, .56); fill.position.set(-10, 1, 20); scene.add(fill);
-  scene.add(new T.HemisphereLight(0x9faab3, 0x09090a, .23));
-
-  let width = 1, height = 1, time = options.reviewTime ?? 0, frame = 0, disposed = false, signatureSent = false, finishSent = false;
-  const target = new T.Vector3();
-  function render(seconds: number) {
-    const t = clamp(seconds, 0, DURATION);
-    const approach = ease((t - .42) / 1.85);
-    const twist = ease((t - 2.25) / .48);
-    built.lens.position.z = .31 + 6.35 * (1 - approach);
-    built.lens.rotation.z = -.29 * (1 - twist);
-    built.iris.rotation.z = .06 * ease((t - 2.7) / .5);
-    const orbit = ease(t / 3.5);
-    const theta = -.68 + orbit * .2;
-    const aspect = width / height;
-    const viewHeight = Math.max(20.5, 22.5 / aspect) * (1 + .06 * orbit);
-    const distance = viewHeight / (2 * Math.tan(T.MathUtils.degToRad(camera.fov * .5)));
-    target.set(.15, .45, 2.65 + (1 - approach) * 2.15);
-    camera.position.set(target.x + Math.sin(theta) * distance, target.y + distance * .235, target.z + Math.cos(theta) * distance);
-    camera.lookAt(target); camera.updateMatrixWorld();
-    renderer.render(scene, camera);
-    if (t >= 3.6 && !signatureSent && options.reviewTime === undefined) { signatureSent = true; options.onSignature(); }
-    if (t >= DURATION && !finishSent && options.reviewTime === undefined) { finishSent = true; options.onFinish(); }
-  }
-  function resize() {
-    const rect = canvas.getBoundingClientRect();
-    width = Math.max(1, rect.width); height = Math.max(1, rect.height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, width < 600 ? 1.4 : 1.6));
-    renderer.setSize(width, height, false); camera.aspect = width / height; camera.updateProjectionMatrix();
-    render(time);
-  }
-  resize();
-  await renderer.compileAsync(scene, camera);
-  if (!canvas.isConnected) {
-    renderer.dispose(); renderer.forceContextLoss(); environmentTarget.dispose();
-    throw new Error("Opening was dismissed before the renderer was ready");
-  }
-  const observer = new ResizeObserver(resize); observer.observe(canvas);
-  let previous = performance.now();
-  function tick(now: number) {
-    if (disposed) return;
-    const delta = Math.min((now - previous) / 1000, .08); previous = now;
-    if (!document.hidden) { time += delta; render(time); }
-    if (time < DURATION) frame = requestAnimationFrame(tick);
-  }
-  if (options.reviewTime === undefined) frame = requestAnimationFrame(tick);
-  else render(options.reviewTime);
-
-  return {
-    setTime(seconds) { if (!disposed) { time = seconds; render(seconds); } },
-    dispose() {
-      if (disposed) return; disposed = true;
-      cancelAnimationFrame(frame); observer.disconnect();
-      const geometries = new Set<T.BufferGeometry>(), materials = new Set<T.Material>();
-      scene.traverse(object => {
-        if (object instanceof T.Mesh || object instanceof T.InstancedMesh) {
-          geometries.add(object.geometry);
-          const list = Array.isArray(object.material) ? object.material : [object.material];
-          list.forEach(material => materials.add(material));
-        }
-      });
-      geometries.forEach(geometry => geometry.dispose()); materials.forEach(material => material.dispose());
-      built.textures.forEach(texture => texture.dispose()); environmentTarget.dispose();
-      key.shadow.map?.dispose(); renderer.renderLists.dispose(); renderer.dispose(); renderer.forceContextLoss();
-    },
-  };
 }

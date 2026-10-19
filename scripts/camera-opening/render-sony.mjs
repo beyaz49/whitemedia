@@ -7,7 +7,7 @@ import potrace from 'potrace';
 const project = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const output = path.resolve(process.argv[2] || '/tmp/sony-film');
 fs.mkdirSync(output, {recursive:true});
-const fps=30, duration=4.6;
+const fps=30, duration=5.2;
 const clamp = t => Math.max(0, Math.min(1,t));
 const ease = t => {t=clamp(t); return t*t*(3-2*t);};
 
@@ -32,8 +32,6 @@ async function photograph(name) {
 const body=await photograph('body-original.jpg'), mounted=await photograph('mounted-original.jpg');
 // Follow the photographed front rim itself, so no arbitrary ellipse cuts
 // through the barrel when the glass moves into the mount close-up.
-const front=new Path2D('M241 211 C295 207 340 239 343 292 C351 348 318 398 271 408 C219 422 167 391 154 344 C135 292 155 243 193 221 C207 215 225 212 241 211 Z');
-
 function render(w,h,t) {
   const canvas=createCanvas(w,h), ctx=canvas.getContext('2d'), phone=w<h;
   ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
@@ -46,24 +44,25 @@ function render(w,h,t) {
     if(blur>0)ctx.filter=`blur(${blur}px)`;
     ctx.drawImage(photo.image,0,0);ctx.restore();
   }
-  if(t<2.48) {
-    const scale=(phone?1.77:2.45)*(1-.035*ease(t/2.4));
-    const fade=ease(t/.34)*(1-ease((t-2.34)/.14));
-    draw(body,w*.51,h*.51,scale,[358,260],fade);
-    const approach=ease((t-1.08)/1.08), lock=ease((t-2.10)/.23);
-    const presence=ease((t-1.06)/.25)*fade;
-    if(presence>0) draw(mounted,w*.51+(1-approach)*w*.14,h*.51+(1-approach)*h*.065,scale*(1.24+.50*(1-approach)),[246,310],presence,-.19*(1-lock),2.5*(1-approach),front);
-    // Restrained moving studio flag, rather than a digital glow or interface HUD.
-    const flag=ctx.createLinearGradient(0,0,w,0);flag.addColorStop(0,'#050709dd');flag.addColorStop(.40,'#05070910');flag.addColorStop(1,'#05070955');
-    ctx.fillStyle=flag;ctx.fillRect(0,0,w,h);
+  if(t<1.62) {
+    // A genuine close-up of the bare E-mount. A dark edit hides the angle
+    // change; no cut-out lens is ever pasted onto this photograph.
+    const advance=ease(t/1.5), fade=1-ease((t-1.43)/.19);
+    const scale=(phone?1.82:2.35)*(1+.075*advance);
+    draw(body,w*(.515-.012*advance),h*.515,scale,[358,260],fade);
   } else {
-    const reveal=ease((t-2.48)/.26), move=ease((t-2.48)/2.12);
-    const scale=(phone?1.27:1.51)*(1+.045*move);
-    ctx.save();ctx.globalAlpha=reveal*.7;
-    const shadow=ctx.createRadialGradient(w*.51,h*.84,0,w*.51,h*.84,w*.34);shadow.addColorStop(0,'#000');shadow.addColorStop(1,'#0000');
-    ctx.translate(0,h*.76);ctx.scale(1,.22);ctx.fillStyle=shadow;ctx.fillRect(0,-h,w,h*4);ctx.restore();
-    draw(mounted,w*.51,h*.50,scale,[321,216],reveal);
+    // Lens macro and complete body are one continuous original photograph.
+    // The dolly-out reveals the camera after the off-screen bayonet lock.
+    const advance=ease((t-1.62)/1.72), reveal=ease((t-1.62)/.17);
+    const scale=(phone?3.05:3.55)*(1-advance)+(phone?1.48:1.56)*advance;
+    const anchor=[246+(321-246)*advance,305+(216-305)*advance];
+    const settle= t>2.48 && t<2.7 ? Math.sin((t-2.48)*79)*.9*(1-ease((t-2.48)/.22)) : 0;
+    draw(mounted,w*.51+settle,h*.51,scale,anchor,reveal);
   }
+  // Controlled moving black flag: a photographic lighting cue, not a CG glow.
+  const flag=ctx.createLinearGradient(-w*.35+t*w*.15,0,w*.95+t*w*.10,0);
+  flag.addColorStop(0,'#0203048c');flag.addColorStop(.46,'#02030400');flag.addColorStop(1,'#02030472');
+  ctx.fillStyle=flag;ctx.fillRect(0,0,w,h);
   const vignette=ctx.createRadialGradient(w*.5,h*.5,Math.min(w,h)*.24,w*.5,h*.5,Math.max(w,h)*.68);
   vignette.addColorStop(0,'#0000');vignette.addColorStop(1,'#020304c0');ctx.fillStyle=vignette;ctx.fillRect(0,0,w,h);
   return canvas;
@@ -75,8 +74,8 @@ for(const [name,w,h] of [['desktop',1280,720],['phone',720,1080]]) {
   console.log(`Rendered ${name}: ${duration*fps} frames`);
 }
 
-// Original dry bayonet Foley: short contact, friction, detent and lock. No stock
-// recording or music. It is muxed into the video and starts only after opt-in.
+// Original dry bayonet Foley: prolonged metal friction, detents and a distinct
+// lock. No stock recording or music. The entire track is picture-synchronous.
 const rate=44100, count=Math.ceil(duration*rate), pcm=new Float32Array(count);
 let seed=94731;const noise=()=>{seed=(Math.imul(seed,1664525)+1013904223)|0;return (seed>>>0)/2147483648-1;};
 function click(at,level,decay) {
@@ -86,9 +85,12 @@ function click(at,level,decay) {
     pcm[Math.floor(at*rate)+i]+=level*env*((n-low)*.7+metal);
   }
 }
-click(1.82,.12,.014);click(2.01,.045,.008);click(2.13,.06,.007);click(2.235,.40,.010);click(2.263,.16,.006);
+click(1.72,.19,.025);click(1.95,.12,.014);click(2.15,.16,.012);click(2.49,.66,.025);click(2.515,.24,.016);
 let low=0;
-for(let i=Math.floor(1.84*rate);i<2.235*rate;i++){const t=i/rate-1.84,n=noise();low+=.08*(n-low);const envelope=Math.sin(Math.PI*t/.395)**2;pcm[i]+=(n-low)*.018*envelope*(.65+.35*Math.sin(t*104));}
+for(let i=Math.floor(1.75*rate);i<2.49*rate;i++){const t=i/rate-1.75,n=noise();low+=.08*(n-low);const envelope=Math.sin(Math.PI*t/.74)**2;pcm[i]+=(n-low)*.075*envelope*(.65+.35*Math.sin(t*104))+.026*Math.sin(t*2*Math.PI*172)*envelope;}
+// Consistent audible peak without digital clipping.
+let peak=0;for(const sample of pcm)peak=Math.max(peak,Math.abs(sample));
+const gain=.75/peak;for(let i=0;i<pcm.length;i++)pcm[i]*=gain;
 const bytes=Buffer.alloc(44+count*2);bytes.write('RIFF',0);bytes.writeUInt32LE(bytes.length-8,4);bytes.write('WAVEfmt ',8);bytes.writeUInt32LE(16,16);bytes.writeUInt16LE(1,20);bytes.writeUInt16LE(1,22);bytes.writeUInt32LE(rate,24);bytes.writeUInt32LE(rate*2,28);bytes.writeUInt16LE(2,32);bytes.writeUInt16LE(16,34);bytes.write('data',36);bytes.writeUInt32LE(count*2,40);
 for(let i=0;i<count;i++)bytes.writeInt16LE(Math.round(Math.max(-1,Math.min(1,pcm[i]))*32767),44+i*2);
 fs.writeFileSync(path.join(output,'lens-mount.wav'),bytes);

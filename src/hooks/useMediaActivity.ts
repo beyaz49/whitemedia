@@ -7,7 +7,7 @@ export function useMediaActivity(ref: RefObject<HTMLElement>) {
     const element = ref.current;
     if (!element) return;
     let inView = !("IntersectionObserver" in window);
-    const update = () => setActive(inView && !document.hidden);
+    const update = () => setActive(inView && !document.hidden && document.documentElement.dataset.introActive !== "true");
     const observer = "IntersectionObserver" in window
       ? new IntersectionObserver(([entry]) => {
           inView = entry.isIntersecting;
@@ -16,10 +16,12 @@ export function useMediaActivity(ref: RefObject<HTMLElement>) {
       : null;
     observer?.observe(element);
     document.addEventListener("visibilitychange", update);
+    window.addEventListener("wm:intro", update);
     update();
     return () => {
       observer?.disconnect();
       document.removeEventListener("visibilitychange", update);
+      window.removeEventListener("wm:intro", update);
     };
   }, [ref]);
 

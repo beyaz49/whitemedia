@@ -21,7 +21,6 @@
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
-    "@napi-rs/canvas": "1.0.11",
     "@types/node": "^22.10.2",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",

@@ -1,10 +1,10 @@
-# Sony photographic opening
+# Camera and lens assembly opening
 
-The opening uses original Sony α7 IV product photography. Camera detail pixels are preserved; an exterior SVG clipping path removes the white page backdrop. A bare E-mount close-up cuts through darkness to a single genuine photograph of the mounted lens and body. A dolly-out reveals the entire camera over 5.2 seconds. Desktop and portrait films have their own framing. No lens cut-out is composited onto another camera photograph.
+The opening uses a matched, high-resolution pair of product images derived from the original Sony α7 IV photographs. The camera body stays still, with its E-mount exposed. A separate lens starts beside it, advances along the mount axis and makes a short bayonet turn into the locked position. The final lens layer is isolated from the matching assembled image, so its position at the lock is exact. There is no camera zoom. Desktop and portrait films have their own paths over 5.2 seconds.
 
 The tactile contact, bayonet rotation and lock Foley are synthesized in the source script, normalized to an audible level and muxed into both films. A prominent “Sesi aç ve filmi izle” button starts synchronized audio and picture after a visitor gesture. If untouched, the film plays silently after a short invitation, with a visible option to restart it with sound. Skip, reduced motion, loading timeout and portfolio playback remain supported.
 
-Original photo URLs and ownership are recorded in `public/intro/sony/SOURCES.md`. No external video service is required.
+Original photo URLs, derivative assets and ownership are recorded in `public/intro/sony/SOURCES.md`. No external video service is required.
 
 Reproduce with Node dependencies and FFmpeg:
 
